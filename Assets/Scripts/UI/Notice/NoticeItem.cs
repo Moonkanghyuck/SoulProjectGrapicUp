@@ -37,6 +37,15 @@ public class NoticeItem : MonoBehaviour
 		gameObject.SetActive(true);
 		StartCoroutine(WaitClose());
 	}
+	public void Setting(string warning)
+	{
+		transform.SetAsLastSibling();
+		_itemImage.sprite = null;
+		_nameText.text = warning;
+		_countText.text = "";
+		gameObject.SetActive(true);
+		StartCoroutine(WaitClose());
+	}
 
 	public void Setting(int money)
 	{

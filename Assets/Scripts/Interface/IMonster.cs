@@ -17,8 +17,9 @@ public interface IMonster
 	public Transform Transform
 	{
 		get;
-		set;
 	}
+
+
 	public GameObject GameObject
 	{
 		get;
@@ -221,4 +222,6 @@ public interface IMonster
 	/// 몬스터 삭제 함수
 	/// </summary>
 	void Delete();
+
+	void SetPos(Vector3 pos);
 }

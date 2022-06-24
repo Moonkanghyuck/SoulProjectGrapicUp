@@ -118,7 +118,7 @@ public class PlayerLockOn : MonoBehaviour
 	private void MonsterInfomationOn()
 	{
 		Vector3 startPoint = transform.position;
-		Vector3 forward = _player.MainCamera.transform.TransformDirection(Vector3.forward);
+		Vector3 forward = _player.MainCamera.transform.forward;
 		forward.y = 0;
 		Ray ray = new Ray(startPoint, forward);
 		Debug.DrawRay(startPoint, forward * 100, Color.red);

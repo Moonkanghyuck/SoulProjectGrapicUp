@@ -55,10 +55,6 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 		{
 			return transform;
 		}
-		set
-		{
-
-		}
 	}
 	public Vector3 Position
 	{
@@ -290,6 +286,7 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 	{
 		get
 		{
+			_monsterSpawner ??= FindObjectOfType<MonsterSpawner>();
 			return _monsterSpawner;
 		}
 		set
@@ -398,7 +395,6 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 	public virtual void Start()
 	{
 		_characterController = GetComponent<CharacterController>();
-		_characterController.SimpleMove(Vector3.zero);
 		_animator = GetComponentInChildren<Animator>();
 		_iAttacks = GetComponentsInChildren<IAttack>(true);
 		_player = FindObjectOfType<Player>();
@@ -420,6 +416,7 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 		_atk = _originAtk + Random.Range(5, 10); ;
 		_speed = _originSpeed + Random.Range(1, 10); ;
 		_defense = _originDefense + Random.Range(1, 5);
+		gameObject.SetActive(true);
 	}
 
 	public void Update()
@@ -1074,14 +1071,19 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 
 	public virtual void Delete()
 	{
-		ItemPoolFind.RegisterObject<MonsterBase>(this);
 		MonsterSpawner.RemoveCount();
 		gameObject.SetActive(false);
+		//ItemPoolFind.RegisterObject<MonsterBase>(this); 자식에서 다시 구현
 	}
 
 	private IEnumerator DeleteMonster()
 	{
 		yield return new WaitForSeconds(1f);
 		Delete();
+	}
+
+	public void SetPos(Vector3 pos)
+	{
+		transform.position = pos;
 	}
 }

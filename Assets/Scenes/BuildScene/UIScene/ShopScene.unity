@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1722,6 +1722,7 @@ MonoBehaviour:
   _sellPanel: {fileID: 1960387623}
   _sellButton: {fileID: 1437596273}
   _buyButton: {fileID: 1435912103}
+  _moneySO: {fileID: 11400000, guid: d0398193587a92145abd8441ea7a7128, type: 2}
 --- !u!1 &1207495774
 GameObject:
   m_ObjectHideFlags: 0

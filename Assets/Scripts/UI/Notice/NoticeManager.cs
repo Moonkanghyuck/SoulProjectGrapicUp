@@ -36,6 +36,15 @@ public class NoticeManager : MonoBehaviour
 		PoolItemBox().Setting(money);
 	}
 
+	/// <summary>
+	/// 경고시 알람
+	/// </summary>
+	/// <param name="warning"></param>
+	public void Notice(string warning)
+	{
+		PoolItemBox().Setting(warning);
+	}
+
 	private NoticeItem PoolItemBox()
 	{
 		for (int i = 0; i < _noticeParent.childCount; ++i)

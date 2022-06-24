@@ -7,6 +7,15 @@ using TMPro;
 
 public class ShopManager : MonoBehaviour
 {
+	private NoticeManager NoticeManager
+	{ 
+		get
+		{
+			_noticeManager ??= FindObjectOfType<NoticeManager>();
+			return _noticeManager;
+		}
+	}
+
 	private List<IItem> _buyItems = new List<IItem>();
 	private List<ItemBox> _itemBoxs = new List<ItemBox>();
 
@@ -30,8 +39,11 @@ public class ShopManager : MonoBehaviour
 	private Button _sellButton;
 	[SerializeField]
 	private Button _buyButton;
+	[SerializeField]
+	private MoneySO _moneySO;
 
 	private bool _isActive = false;
+	private NoticeManager _noticeManager = null;
 	private Player _player = null;
 	private Merchant _merchant = null;
 
@@ -95,7 +107,7 @@ public class ShopManager : MonoBehaviour
 			_itemBoxParent.GetChild(i).gameObject.SetActive(false);
 		}
 
-		if (isBuy) //아이템 구매
+		if (isBuy) //아이템 구매상태
 		{
 			//아이템의 갯수 설정
 			itemCount = _buyItems.Count;
@@ -106,7 +118,7 @@ public class ShopManager : MonoBehaviour
 				_itemBoxs.Add(itembox);
 			}
 		}
-		else //아이템 판매
+		else //아이템 판매상태
 		{
 			//아이템의 갯수 설정
 			List<IItem> items = _sellItems.GetIItemList();
@@ -139,7 +151,13 @@ public class ShopManager : MonoBehaviour
 	}
 	private void BuyItem(ItemBox item)
 	{
+		if(item.Item.Price > _moneySO._money)
+		{
+			NoticeManager.Notice("돈이 부족합니다");
+			return;
+		}
 		_player.AddItem(item.Item);
+		_moneySO.AddMoney(-item.Item.Price);
 		_itemInventory.UpdateUI();
 	}
 	private void SellItem(ItemBox item)

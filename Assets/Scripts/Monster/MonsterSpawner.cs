@@ -27,10 +27,12 @@ public class MonsterSpawner : MonoBehaviour
 
 	public void Update()
 	{
-		if(_monsterCount < 3)
+		if(_monsterCount < 10)
 		{
 			SpawnMonster();
 		}
+
+		DistanceDeleteMonster();
 	}
 
 	public void AddCount()
@@ -42,18 +44,35 @@ public class MonsterSpawner : MonoBehaviour
 		_monsterCount--;
 	}
 
+	/// <summary>
+	/// 거리에 따른 몬스터 삭제
+	/// </summary>
+	private void DistanceDeleteMonster()
+	{
+		for(int i = 0; i < _monsters.Count; )
+		{
+			IMonster monster = _monsters[i];
+			Vector3 distance = monster.Transform.position - _player.position;
+			if (distance.magnitude > 200)
+			{
+				monster.Delete();
+				_monsters.Remove(monster);
+			}
+			else
+			{
+				++i;
+			}
+		}
+	}
+
 	private void SpawnMonster()
 	{
-		float randomX = Random.Range(-1, 1);
-		float randomZ = Random.Range(-1, 1);
+		float random = Random.Range(0f, 6.28f);
+		float randomX = Mathf.Cos(random) * 80;
+		float randomZ = Mathf.Sin(random) * 80;
 
-		if(randomX + randomZ == 0)
-		{
-			return;
-		}
-
-		float randomPosX = _player.transform.position.x + randomX * 100;
-		float randomPosZ = _player.transform.position.z + randomZ * 100;
+		float randomPosX =  _player.transform.position.x + randomX ;
+		float randomPosZ = _player.transform.position.z + randomZ;
 		Vector3 spawnVector = new Vector3(randomPosX,0,randomPosZ);
 		Ray ray = new Ray(new Vector3(randomPosX, 1000, randomPosZ), Vector3.down);
 		RaycastHit raycastHit;
@@ -65,10 +84,11 @@ public class MonsterSpawner : MonoBehaviour
 
 			if (monster == null)
 			{
-				monster = Instantiate(_skeletonPrefeb, spawnVector, Quaternion.identity, null).GetComponent<Skeleton>();
+				monster = Instantiate(_skeletonPrefeb, Vector3.zero, Quaternion.identity, null).GetComponent<Skeleton>();
+				monster.GameObject.SetActive(false);
 			}
+			monster.SetPos(spawnVector);
 			monster.Init();
-			monster.Transform.position = spawnVector;
 			AddCount();
 			_monsters.Add(monster);
 		}
