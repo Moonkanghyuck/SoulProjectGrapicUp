@@ -56,13 +56,16 @@ public class PlayerCapture : MonoBehaviour
 	private void Capture()
 	{
 		Vector3 startPoint = transform.position;
-		Vector3 forward = _player.MainCamera.transform.forward;
+		Vector3 forward = _player.MainCamera.transform.TransformDirection(Vector3.forward);
+		forward.y = 0;
+		Vector3 forwardcamera = _player.MainCamera.transform.forward;
 		Ray ray = new Ray(startPoint, forward);
+		Ray ray2 = new Ray(startPoint, forwardcamera);
 		Debug.DrawRay(startPoint, forward * 100, Color.red);
 
 		RaycastHit raycastHit;
 
-		if (Physics.Raycast(ray, out raycastHit, 100))
+		if (Physics.Raycast(ray, out raycastHit, 100) || Physics.Raycast(ray2, out raycastHit, 100))
 		{
 			var monster = raycastHit.collider.gameObject.GetComponent<IMonster>();
 			if (_player.SelectMonster != null & monster != _player.SelectMonster)
