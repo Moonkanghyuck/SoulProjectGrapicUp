@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterBase : MonoBehaviour, IMonster
+public abstract class MonsterBase : MonoBehaviour, IMonster
 {
+
 	//몬스터 상태
 	public enum MonsterState
 	{
@@ -26,6 +27,17 @@ public class MonsterBase : MonoBehaviour, IMonster
 	}
 
 	//프로퍼티
+	public string Name
+	{
+		get
+		{
+			return _name;
+		}
+		set
+		{
+			_name = value;
+		}
+	}
 	public bool IsSelect
 	{
 		get
@@ -48,7 +60,6 @@ public class MonsterBase : MonoBehaviour, IMonster
 
 		}
 	}
-
 	public Vector3 Position
 	{
 		get
@@ -60,7 +71,6 @@ public class MonsterBase : MonoBehaviour, IMonster
 
 		}
 	}
-
 	public int Level
 	{
 		get
@@ -83,7 +93,17 @@ public class MonsterBase : MonoBehaviour, IMonster
 			_hp = value;
 		}
 	}
-
+	public int MaxHP
+	{
+		get
+		{
+			return _maxhp;
+		}
+		set
+		{
+			_maxhp = value;
+		}
+	}
 	public bool IsCapture
 	{
 		get
@@ -93,6 +113,188 @@ public class MonsterBase : MonoBehaviour, IMonster
 		set
 		{
 			_isCapture = value;
+		}
+	}
+	public MoneyInventory MoneyInventory
+	{
+		get
+		{
+			if (_moneyInventory == null)
+			{
+				_moneyInventory = FindObjectOfType<MoneyInventory>();
+			}
+			return _moneyInventory;
+		}
+	}
+	public NoticeManager NoticeManager
+	{
+		get
+		{
+			if (_noticeManager == null)
+			{
+				_noticeManager = FindObjectOfType<NoticeManager>();
+			}
+			return _noticeManager;
+		}
+	}
+	public ItemPool ItemPoolFind
+	{
+		get
+		{
+			_itemPool ??= FindObjectOfType<ItemPool>();
+			return _itemPool;
+		}
+	}
+
+	public EffectManager EffectManagerObj
+	{
+		get
+		{
+			_effectManager ??= FindObjectOfType<EffectManager>();
+			return _effectManager;
+		}
+		set
+		{
+			_effectManager = value;
+		}
+	}
+
+	public GameObject GameObject
+	{
+		get
+		{
+			return gameObject;
+		}
+		set
+		{
+
+		}
+	}
+
+	public float CoolTimeMLB
+	{
+		get
+		{
+			return _coolTimeMLB;
+		}
+		set
+		{
+			_coolTimeMLB = value;
+		}
+	}
+	public float CoolTimeMRB
+	{
+		get
+		{
+			return _coolTimeMRB;
+		}
+		set
+		{
+			_coolTimeMRB = value;
+		}
+	}
+	public float CoolTimeE
+	{
+		get
+		{
+			return _coolTimeE;
+		}
+		set
+		{
+			_coolTimeE = value;
+		}
+	}
+	public float CoolTimeR
+	{
+		get
+		{
+			return _coolTimeR;
+		}
+		set
+		{
+			_coolTimeR = value;
+		}
+	}
+
+	public Sprite Sprite
+	{
+		get
+		{
+			return _monsterSprite;
+		}
+		set
+		{
+			_monsterSprite = value;
+		}
+	}
+
+	public int SPD
+	{
+		get
+		{
+			return _speed;
+		}
+		set
+		{
+			_speed = value;
+		}
+	}
+	public int DEF
+	{
+		get
+		{
+			return _defense;
+		}
+		set
+		{
+			_defense = value;
+		}
+	}
+	public int EXP
+	{
+		get
+		{
+			return _exp;
+		}
+		set
+		{
+			_exp = value;
+		}
+	}
+
+	public string Description
+	{
+		get
+		{
+			return _description;
+		}
+		set
+		{
+			_description = value;
+		}
+	}
+
+	public int ATK
+	{
+		get
+		{
+			return _atk;
+		}
+		set
+		{
+			_atk = value;
+		}
+	}
+
+	public MonsterSpawner MonsterSpawner
+	{
+		get
+		{
+			return _monsterSpawner;
+		}
+		set
+		{
+			_monsterSpawner = value;
 		}
 	}
 
@@ -110,7 +312,7 @@ public class MonsterBase : MonoBehaviour, IMonster
 	[SerializeField]
 	private Transform _centerPivot; //중심점 트랜스폼
 	[SerializeField]
-	private float _moveSpeed = 0f; //이동속도
+	private float _originMoveSpeed = 0f; //기본 이동속도
 	[SerializeField]
 	private float _gravitySpeed = 0f; //중력속도
 	[SerializeField]
@@ -121,6 +323,8 @@ public class MonsterBase : MonoBehaviour, IMonster
 	[SerializeField]
 	private float velocityChangeSpeed = 0.01f; //가변 증가값
 	[SerializeField]
+	private int _maxhp = 100; //최대체력
+	[SerializeField]
 	private int _hp = 100; //체력
 	[SerializeField]
 	private float _atkRange = 1.5f; //몬스터 공격 거리
@@ -130,31 +334,92 @@ public class MonsterBase : MonoBehaviour, IMonster
 	private float _viewAngle; //시야각
 	[SerializeField]
 	private float _groundHeight; //땅에서부터 떨어질 높이
+	[SerializeField]
+	private Sprite _monsterSprite; //몬스터 스프라이트
+	[SerializeField]
+	protected float _coolTimeSpeedMLB = 10.0f; //마우스 좌클릭 쿨타임 증가속도
+	[SerializeField]
+	protected float _coolTimeSpeedMRB = 10.0f; //마우스 우클릭 쿨타임 증가속도
+	[SerializeField]
+	protected float _coolTimeSpeedE = 10.0f; //E 쿨타임 증가속도
+	[SerializeField]
+	protected float _coolTimeSpeedR = 10.0f; //R 쿨타임 증가속도
+	[SerializeField]
+	protected int _atk = 10; //공격 스탯
+	[SerializeField]
+	protected int _speed = 10; //속도 스탯
+	[SerializeField]
+	protected int _defense = 10; //방어력 스탯
+	[SerializeField]
+	protected int _exp = 0; //경험치
+	[SerializeField]
+	protected ItemSetSO _dropItemSet = null; //드랍하는 아이템 리스트
 
 	//참조하는 속성
 	protected Animator _animator = null;
 	private CharacterController _characterController = null;
 	private IAttack[] _iAttacks = null;
-	private PlayerMove _playerMove = null;
+	private Player _player = null;
+	private MoneyInventory _moneyInventory = null;
+	private NoticeManager _noticeManager = null;
+	private EffectManager _effectManager = null;
+	private MonsterSpawner _monsterSpawner = null;
+	protected ItemPool _itemPool = null;
 
 	//속성
+	protected float _moveSpeed = 1.0f; //이동속도
 	protected bool _isSelect = false; //선택되었는지
 	protected bool _isCapture = false; //빙의 되었는지
 	protected Vector3 _moveDirect = Vector3.zero; //이동방향
 	protected Vector3 _gravityDirect = Vector3.zero; //중력 벡터
 	protected Vector3 currentVelocitySpeed = Vector3.zero; //캐릭터 현재 이동 속도
-	protected Vector3 posTarget = Vector3.zero; //몬스터가 본 타겟 위치
+	protected Vector3 _posTarget = Vector3.zero; //몬스터가 본 타겟 위치
+	protected string _name; //몬스터 이름
+	protected string _description; //몬스터 설명;
+	protected float _coolTimeMLB = 0.0f; //마우스 좌클릭 쿨타임
+	protected float _coolTimeMRB = 0.0f; //마우스 우클릭 쿨타임
+	protected float _coolTimeE = 0.0f; //E 쿨타임
+	protected float _coolTimeR = 0.0f; //R 쿨타임
+
+	protected bool _canSkillMLB = false; //마우스 좌클릭 스킬을 사용 가능한지
+	protected bool _canSkillMRB = false; //마우스 우클릭 스킬을 사용 가능한지
+	protected bool _canSkillE = false; //E 스킬을 사용 가능한지
+	protected bool _canSkillR = false; //R 스킬을 사용 가능한지
 	private bool _isAttack; //공격중일 때
 	private bool _isDie; //죽었을 때
+
+	//초깃값
+	private int _originMaxHP = 0;
+	protected int _originAtk = 0; //공격 스탯
+	protected int _originSpeed = 0; //속도 스탯
+	protected int _originDefense = 0; //방어력 스탯
 
 
 	public virtual void Start()
 	{
 		_characterController = GetComponent<CharacterController>();
+		_characterController.SimpleMove(Vector3.zero);
 		_animator = GetComponentInChildren<Animator>();
 		_iAttacks = GetComponentsInChildren<IAttack>(true);
-		_playerMove = FindObjectOfType<PlayerMove>();
+		_player = FindObjectOfType<Player>();
 		ChangeState(MonsterState.Idle);
+		
+		SetSpd();
+		SetAtk();
+
+		_originMaxHP = _maxhp;
+		_originAtk = _atk;
+		_originSpeed = _speed;
+		_originDefense = _defense;
+		Init();
+	}
+	public void Init()
+	{
+		_maxhp = _originMaxHP + Random.Range(50, 200); ;
+		_hp = _maxhp;
+		_atk = _originAtk + Random.Range(5, 10); ;
+		_speed = _originSpeed + Random.Range(1, 10); ;
+		_defense = _originDefense + Random.Range(1, 5);
 	}
 
 	public void Update()
@@ -170,6 +435,7 @@ public class MonsterBase : MonoBehaviour, IMonster
 		BodyDirectChange();
 		SetGravity();
 		SetAnimation();
+		UpdateCoolTime();
 	}
 
 	/// <summary>
@@ -207,19 +473,19 @@ public class MonsterBase : MonoBehaviour, IMonster
 		if (_targetCharacter == null)
 		{
 			//임의의 이동 목표점
-			posTarget = new Vector3(transform.position.x + Random.Range(-10f, 10f),
+			_posTarget = new Vector3(transform.position.x + Random.Range(-10f, 10f),
 									transform.position.y + 1000f,
 									transform.position.z + Random.Range(-10f, 10f));
 
 
 			//레이캐스트 시작점 목표방향
-			Ray ray = new Ray(posTarget, Vector3.down);
+			Ray ray = new Ray(_posTarget, Vector3.down);
 			RaycastHit info = new RaycastHit();
 			//충돌체가 있다면
 			if (Physics.Raycast(ray, out info, Mathf.Infinity))
 			{
 				//임의의 목표 벡터에 높이 값 추가
-				posTarget.y = info.point.y;
+				_posTarget.y = info.point.y;
 			}
 			//해골 상태를 Move로
 			ChangeState(MonsterState.Move);
@@ -245,10 +511,10 @@ public class MonsterBase : MonoBehaviour, IMonster
 		{
 			case MonsterState.Move:
 				//목표 위치가 있을 때
-				if (posTarget != Vector3.zero)
+				if (_posTarget != Vector3.zero)
 				{
 					//목표 위치와 해골 위치 차이 구하기
-					distance = posTarget - transform.position;
+					distance = _posTarget - transform.position;
 
 					if (distance.magnitude < _atkRange)
 					{
@@ -257,7 +523,7 @@ public class MonsterBase : MonoBehaviour, IMonster
 					}
 
 					//바라보는 방향
-					posLookAt = new Vector3(posTarget.x, transform.position.y, posTarget.z);
+					posLookAt = new Vector3(_posTarget.x, transform.position.y, _posTarget.z);
 				}
 				break;
 			case MonsterState.GoTarget:
@@ -268,8 +534,7 @@ public class MonsterBase : MonoBehaviour, IMonster
 					float angle = GetTargetToAngle();
 					if (distance.magnitude < _atkRange && angle < _viewAngle / 2)
 					{
-						ChangeState(MonsterState.Attack);
-						_attackState = AttackState.MLB;
+						MouseLButtonSkill();
 						return;
 					}
 
@@ -339,50 +604,10 @@ public class MonsterBase : MonoBehaviour, IMonster
 		}
 	}
 
-	public virtual bool KeyESkill()
-	{
-		Debug.Log("스킬E");
-		if (IsCapture)
-		{
-			return true;
-		}
-		return false;
-	}
-
-	public virtual bool KeyRSkill()
-	{
-		Debug.Log("스킬R");
-		if (IsCapture)
-		{
-			return true;
-		}
-		return false;
-	}
-
-	public virtual bool MouseLButtonSkill()
-	{
-		Debug.Log("스킬MLB");
-		if (IsSelect)
-		{
-			return false;
-		}
-		return true;
-	}
-
-	public virtual bool MouseRButtonSkill()
-	{
-		Debug.Log("스킬MRB");
-		if (IsSelect)
-		{
-			return false;
-		}
-		return true;
-	}
-
-	public void MonsterAI()
-	{
-
-	}
+	public abstract bool KeyESkill();
+	public abstract bool KeyRSkill();
+	public abstract bool MouseLButtonSkill();
+	public abstract bool MouseRButtonSkill();
 
 	public void SelectMonster()
 	{
@@ -397,31 +622,39 @@ public class MonsterBase : MonoBehaviour, IMonster
 		IsSelect = false;
 	}
 
-	public bool MonsterMove(Vector3 targetVector)
+	/// <summary>
+	/// 빙의 됐을 때 움직임
+	/// </summary>
+	/// <param name="targetVector"></param>
+	public void MonsterMove(Vector3 targetVector, bool isTarggeting)
 	{
-		if (IsCapture)
+		if (_monsterState == MonsterState.Wait || _monsterState == MonsterState.Damage || _monsterState == MonsterState.Attack)
 		{
-			if(_monsterState == MonsterState.Wait || _monsterState == MonsterState.Damage || _monsterState == MonsterState.Attack)
-			{
-				return false;
-			}
-			ChangeState(MonsterState.Move);
-			float inputX = Input.GetAxis("Horizontal");
-			float inputY = Input.GetAxis("Vertical");
+			return;
+		}
+		ChangeState(MonsterState.Move);
 
-			if (inputY >= 0)
-			{
-				_moveDirect = Vector3.RotateTowards(_moveDirect, targetVector, _rotateSpeed * Mathf.Deg2Rad * Time.deltaTime, 1000.0f);
-				_moveDirect = _moveDirect.normalized;
-			}
+		if(isTarggeting)
+		{
+			Vector3 forwardVector = Camera.main.transform.forward;
+			forwardVector.y = 0;
+			transform.forward = forwardVector;
+			_moveDirect = Vector3.RotateTowards(_moveDirect, forwardVector, _rotateSpeed * Mathf.Deg2Rad * Time.deltaTime, 1000.0f);
+			_moveDirect = _moveDirect.normalized;
 
 			Vector3 amount = (targetVector * _moveSpeed * Time.deltaTime) + (_gravityDirect * Time.deltaTime);
 
 			_characterController.Move(amount);
-
-			return false;
 		}
-		return true;
+		else
+		{
+			_moveDirect = Vector3.RotateTowards(_moveDirect, targetVector, _rotateSpeed * Mathf.Deg2Rad * Time.deltaTime, 1000.0f);
+			_moveDirect = _moveDirect.normalized;
+
+			Vector3 amount = (targetVector * _moveSpeed * Time.deltaTime) + (_gravityDirect * Time.deltaTime);
+
+			_characterController.Move(amount);
+		}
 	}
 
 	/// <summary>
@@ -471,13 +704,13 @@ public class MonsterBase : MonoBehaviour, IMonster
 			case MonsterState.GoTarget:
 			case MonsterState.Move:
 				_isAttack = false;
-				if (GetVelocitySpd() <= 0)
+				if (GetVelocitySpd() > 0.0f)
 				{
-					_animator.SetBool("IsWalk", false);
+					_animator.SetBool("IsWalk", true);
 				}
 				else
 				{
-					_animator.SetBool("IsWalk", true);
+					_animator.SetBool("IsWalk", false);
 				}
 				break;
 			case MonsterState.Attack:
@@ -595,10 +828,11 @@ public class MonsterBase : MonoBehaviour, IMonster
 		if (other.gameObject.CompareTag("ATK"))
 		{
 			var iAttack = other.GetComponent<IAttack>();
-			if(iAttack.IsPlayer != _isCapture)
+			if(iAttack.Attacker != gameObject)
 			{
 				//공격받음
 				Damaged(iAttack);
+				_targetCharacter = iAttack.Attacker;
 			}
 		}
 	}
@@ -609,7 +843,14 @@ public class MonsterBase : MonoBehaviour, IMonster
 	/// <param name="iAttack"></param>
 	private void Damaged(IAttack iAttack)
 	{
-		_hp -= iAttack.Damage;
+		int damage = (iAttack.Damage - _defense);
+		if(damage <= 0)
+		{
+			damage = 1;
+		}
+		_hp -= damage;
+		EffectManagerObj.SetTextEffect(damage, Position);
+
 		Instantiate(iAttack.Effect, _centerPivot.position, Quaternion.identity);
 		if (_hp > 0)
 		{
@@ -617,16 +858,47 @@ public class MonsterBase : MonoBehaviour, IMonster
 		}
 		else
 		{
-			if(_monsterState != MonsterState.Die)
-			{
-				ChangeState(MonsterState.Die);
-				_playerMove.AddExp(10);
-				if(IsCapture)
-				{
-					_playerMove.OutCaptureMonster();	
-				}
-			}
+			Die();
 		}
+	}
+
+	/// <summary>
+	/// 죽음
+	/// </summary>
+	private void Die()
+	{
+		if (_monsterState != MonsterState.Die)
+		{
+			ChangeState(MonsterState.Die);
+			NoticeManager.Notice(10);
+			PlayerStat playerStat = _player.GetComponent<PlayerStat>();
+			playerStat.AddExp(10);
+			playerStat.AddMoney(10);
+			ItemDrop();
+			StartCoroutine(DeleteMonster());
+		}
+	}
+
+	/// <summary>
+	/// 아이템 드랍
+	/// </summary>
+	private void ItemDrop()
+	{
+		if(_dropItemSet == null)
+		{
+			return;
+		}
+		ItemPool itemPool = ItemPoolFind;
+		ItemObject itemObject = itemPool.GetObject<ItemObject>();
+		if (itemObject == null)
+		{
+			itemObject = new GameObject().AddComponent<ItemObject>();
+		}
+		
+		int random = Random.Range(0, _dropItemSet._itemsList.Count - 1);
+		ItemData itemData = _dropItemSet._itemsList[random];
+
+		itemObject.Setting(itemData.ChangeIItem(), itemData, Position);
 	}
 
 	/// <summary>
@@ -643,7 +915,6 @@ public class MonsterBase : MonoBehaviour, IMonster
 		float targetAngle = Mathf.Acos(Vector3.Dot(transform.forward, dirToTarget)) * Mathf.Rad2Deg;
 		return targetAngle;
 	}
-
 	/// <summary>
 	/// 타겟 찾음
 	/// </summary>
@@ -657,7 +928,6 @@ public class MonsterBase : MonoBehaviour, IMonster
 		}
 
 	}
-
 	/// <summary>
 	/// 상태 변경
 	/// </summary>
@@ -665,5 +935,153 @@ public class MonsterBase : MonoBehaviour, IMonster
 	public void ChangeState(MonsterState monsterState)
 	{
 		_monsterState = monsterState;
+	}
+	/// <summary>
+	/// 쿨타임 증가
+	/// </summary>
+	private void UpdateCoolTime()
+	{
+		if(CoolTimeMLB < 1)
+		{
+			_coolTimeMLB += Time.deltaTime * _coolTimeSpeedMLB;
+		}
+		if (CoolTimeMRB < 1)
+		{
+			_coolTimeMRB += Time.deltaTime * _coolTimeSpeedMRB;
+		}
+		if (CoolTimeE < 1)
+		{
+			_coolTimeE += Time.deltaTime * _coolTimeSpeedE;
+		}
+		if (CoolTimeR < 1)
+		{
+			_coolTimeR += Time.deltaTime * _coolTimeSpeedR;
+		}
+	}
+	public bool CheckCanMLB()
+	{
+		return _canSkillMLB;
+	}
+	public bool CheckCanMRB()
+	{
+		return _canSkillMRB;
+	}
+	public bool CheckCanE()
+	{
+		return _canSkillE;
+	}
+	public bool CheckCanR()
+	{
+		return _canSkillR;
+	}
+	public bool CheckCoolTimeMLB()
+	{
+		return _coolTimeMLB > 1;
+	}
+	public bool CheckCoolTimeMRB()
+	{
+		return _coolTimeMRB > 1;
+	}
+	public bool CheckCoolTimeE()
+	{
+		return _coolTimeE > 1;
+	}
+	public bool CheckCoolTimeR()
+	{
+		return _coolTimeR > 1;
+	}
+
+	public bool CheckMaxLevel()
+	{
+		return _level >= 100;
+	}
+
+	public void LevelUP()
+	{
+		++_level;
+		AddMaxHP(5);
+		AddAtk(1);
+		AddDef(1);
+		AddSpd(1);
+		SetEXP(0);
+	}
+
+	public void AddMaxHP(int add)
+	{
+		_maxhp = _maxhp + add;
+		_hp = _maxhp;
+	}
+	public void AddAtk(int add)
+	{
+		_atk = _atk + add;
+		SetAtk();
+	}
+	public void SetAtk()
+	{
+		int count = _iAttacks.Length;
+		for (int i = 0; i < count; i++)
+		{
+			_iAttacks[i].AddDamage = _atk;
+		}
+	}
+
+	public void AddDef(int add)
+	{
+		_defense = _defense + add;
+	}
+	public void AddSpd(int add)
+	{
+		_speed = _speed + add;
+		SetSpd();
+	}
+	private void SetSpd()
+	{
+		_moveSpeed = _originMoveSpeed + (float)_speed / 20;
+	}
+
+	public void SetEXP(int exp)
+	{
+		_exp = exp;
+	}
+
+	public void AddEXP(int exp)
+	{
+		if(_monsterState == MonsterState.Die)
+		{
+			return;
+		}
+
+		_exp += exp;
+
+		if(_exp > _level * 10)
+		{
+			LevelUP();
+		}
+	}
+
+	public void OnGUI()
+	{
+		if(!IsCapture)
+		{
+			return;
+		}
+		GUI.Label(new Rect(5, 5, 1920, 20), $"캐릭터 컨트롤러 속도 : {_characterController.velocity}");
+		GUI.Label(new Rect(5, 25, 1920, 20), $"캐릭터 컨트롤러 속도매그니: {_characterController.velocity.magnitude}");
+		GUI.Label(new Rect(5, 45, 1920, 20), $"현재 속도: {currentVelocitySpeed}");
+		GUI.Label(new Rect(5, 65, 1920, 20), $"현재 속도매그니: {currentVelocitySpeed.magnitude}");
+		
+	}
+
+	public virtual void Delete()
+	{
+		ItemPoolFind.RegisterObject<MonsterBase>(this);
+		MonsterSpawner.RemoveCount();
+		gameObject.SetActive(false);
+	}
+
+	private IEnumerator DeleteMonster()
+	{
+		yield return new WaitForSeconds(1f);
+		Delete();
 	}
 }

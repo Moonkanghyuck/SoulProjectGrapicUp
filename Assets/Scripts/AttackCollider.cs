@@ -26,29 +26,67 @@ public class AttackCollider : MonoBehaviour, IAttack
 			_effect = value;
 		}
 	}
-	public int Damage 
+	public int OriginDamage 
 	{ 
 		get
 		{
-			return _damage + (_damage * (int)Mathf.Log10(_monster.Level));
+			return _originDamage;
 		}
 
 		set
 		{
-			_damage = value;
+			_originDamage = value;
 		}
 	}
 
+	public int AddDamage
+	{
+		get
+		{
+			return _addDamage;
+		}
+		set
+		{
+			_addDamage = value;
+		}
+	}
+
+	public int Damage
+	{
+		get
+		{
+			return _originDamage + _addDamage;
+		}
+	}
+
+	public GameObject Attacker
+	{
+		get
+		{
+			return _attacker;
+		}
+		set
+		{
+			_attacker = value;
+		}
+	}
 	[SerializeField]
 	private bool _isPlayer = false; //플레이어의 몬스터인지
 	[SerializeField]
 	private GameObject _effect = null; //이펙트
 	[SerializeField]
-	private int _damage = 10; //데미지
+	private GameObject _attacker = null; //공격하는 몬스터
+	[SerializeField]
+	private int _originDamage = 10; //기본데미지
+	[SerializeField]
+	private int _addDamage = 0; //추가데미지
 	private IMonster _monster = null;
 
 	private void Start()
 	{
 		_monster = GetComponentInParent<IMonster>();
+		_attacker = _monster.GameObject;
 	}
+
+
 }

@@ -1660,9 +1660,9 @@ GameObject:
   - component: {fileID: 1534915808528363773}
   - component: {fileID: 1534915808528363775}
   - component: {fileID: 1534915808528363772}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ghoul
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1742,19 +1742,30 @@ MonoBehaviour:
   _monsterState: 0
   _beforeMonsterState: 0
   _attackState: 0
-  _level: 0
+  _level: 1
   _selection: {fileID: 1532000871743345073}
   _centerPivot: {fileID: 1532000873459996752}
-  _moveSpeed: 3
+  _originMoveSpeed: 0
   _gravitySpeed: 3
   _rotateSpeed: 100
   _bodyRotateSpeed: 50
   velocityChangeSpeed: 0.01
+  _maxhp: 100
   _hp: 100
   _atkRange: 5
   _targetCharacter: {fileID: 0}
   _viewAngle: 30
   _groundHeight: 0.5
+  _monsterSprite: {fileID: 21300000, guid: 12e358290f896de4e923cfba8ca6f549, type: 3}
+  _coolTimeSpeedMLB: 10
+  _coolTimeSpeedMRB: 10
+  _coolTimeSpeedE: 10
+  _coolTimeSpeedR: 10
+  _atk: 10
+  _speed: 10
+  _defense: 10
+  _exp: 0
+  _dropItemSet: {fileID: 0}
 --- !u!1 &1533030830431227876
 GameObject:
   m_ObjectHideFlags: 0

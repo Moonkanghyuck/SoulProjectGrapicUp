@@ -10,7 +10,25 @@ interface IAttack
 		set;
 	}
 
+	public GameObject Attacker
+	{
+		get;
+		set;
+	}
+
 	public GameObject Effect
+	{
+		get;
+		set;
+	}
+
+	public int OriginDamage
+	{
+		get;
+		set;
+	}
+
+	public int AddDamage
 	{
 		get;
 		set;
@@ -19,6 +37,5 @@ interface IAttack
 	public int Damage
 	{
 		get;
-		set;
 	}
 }

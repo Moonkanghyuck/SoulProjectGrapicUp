@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &128389468580101510
 Transform:
   m_ObjectHideFlags: 0
@@ -61,7 +61,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isPlayer: 0
   _effect: {fileID: 6192724089161036641, guid: e17d9a3f04750764c8c0a7a0461e4c3b, type: 3}
-  _damage: 30
+  _attacker: {fileID: 0}
+  _originDamage: 10
+  _addDamage: 0
 --- !u!1 &128389468677089407
 GameObject:
   m_ObjectHideFlags: 0
@@ -729,7 +731,7 @@ GameObject:
   - component: {fileID: 43245489845196475}
   - component: {fileID: 43245489845196472}
   - component: {fileID: 43245489845196473}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkeletonWizard
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -794,19 +796,30 @@ MonoBehaviour:
   _monsterState: 0
   _beforeMonsterState: 0
   _attackState: 0
-  _level: 0
+  _level: 1
   _selection: {fileID: 128389470029745649}
   _centerPivot: {fileID: 128389469718761162}
-  _moveSpeed: 5
+  _originMoveSpeed: 0
   _gravitySpeed: 3
   _rotateSpeed: 100
   _bodyRotateSpeed: 50
   velocityChangeSpeed: 0.01
+  _maxhp: 100
   _hp: 100
   _atkRange: 4
   _targetCharacter: {fileID: 0}
   _viewAngle: 40
   _groundHeight: 0
+  _monsterSprite: {fileID: 21300000, guid: 30cb3a626f101fc44ac0d1eea528fe72, type: 3}
+  _coolTimeSpeedMLB: 10
+  _coolTimeSpeedMRB: 10
+  _coolTimeSpeedE: 10
+  _coolTimeSpeedR: 10
+  _atk: 10
+  _speed: 10
+  _defense: 10
+  _exp: 0
+  _dropItemSet: {fileID: 0}
 --- !u!143 &43245489845196473
 CharacterController:
   m_ObjectHideFlags: 0
