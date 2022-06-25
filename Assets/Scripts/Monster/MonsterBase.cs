@@ -417,6 +417,7 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 		_speed = _originSpeed + Random.Range(1, 10); ;
 		_defense = _originDefense + Random.Range(1, 5);
 		gameObject.SetActive(true);
+		SetSkill();
 	}
 
 	public void Update()
@@ -973,19 +974,38 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 	}
 	public bool CheckCoolTimeMLB()
 	{
-		return _coolTimeMLB > 1;
+		if(CheckCanMLB())
+		{
+			return _coolTimeMLB > 1;
+		}
+		return false;
 	}
 	public bool CheckCoolTimeMRB()
 	{
-		return _coolTimeMRB > 1;
+		if (CheckCanMRB())
+		{
+			return _coolTimeMRB > 1;
+
+		}
+		return false;
 	}
 	public bool CheckCoolTimeE()
 	{
-		return _coolTimeE > 1;
+		if (CheckCanE())
+		{
+			return _coolTimeE > 1;
+
+		}
+		return false;
 	}
 	public bool CheckCoolTimeR()
 	{
-		return _coolTimeR > 1;
+		if (CheckCanR())
+		{
+			return _coolTimeR > 1;
+
+		}
+		return false;
 	}
 
 	public bool CheckMaxLevel()
@@ -1085,5 +1105,25 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 	public void SetPos(Vector3 pos)
 	{
 		transform.position = pos;
+	}
+
+	private void SetSkill()
+	{
+		if(_level >= 1)
+		{
+			_canSkillMLB = true;
+		}
+		if (_level >= 10)
+		{
+			_canSkillMRB = true;
+		}
+		if (_level >= 30)
+		{
+			_canSkillE = true;
+		}
+		if (_level >= 50)
+		{
+			_canSkillR = true;
+		}
 	}
 }

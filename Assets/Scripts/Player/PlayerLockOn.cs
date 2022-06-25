@@ -127,7 +127,7 @@ public class PlayerLockOn : MonoBehaviour
 
 		RaycastHit raycastHit;
 		int layerMask = 1 << LayerMask.NameToLayer("Monster");  // 몬스터 레이어만 충돌 체크함
-		if (Physics.Raycast(ray, out raycastHit, 100, layerMask) || Physics.Raycast(ray2, out raycastHit, 100, layerMask))
+		if (Physics.Raycast(ray, out raycastHit, layerMask) || Physics.Raycast(ray2, out raycastHit, layerMask))
 		{
 			var monster = raycastHit.collider.gameObject.GetComponent<IMonster>();
 			_informationMonster = monster;
