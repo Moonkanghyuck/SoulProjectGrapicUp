@@ -3902,6 +3902,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 982753854349080280, guid: 1e758442ff8a04a48adb3790078a223b, type: 3}
   m_PrefabInstance: {fileID: 1165212260}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1165212271 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6769009013150245665, guid: 1e758442ff8a04a48adb3790078a223b, type: 3}
+  m_PrefabInstance: {fileID: 1165212260}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1165212261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 618cd02a8997e5148849f4115cb46edb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1190709891
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6560,7 +6571,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 1165212270}
+  _playerStat: {fileID: 1165212271}
   _skeletonPrefeb: {fileID: 2085715349229982944, guid: 39c87695f052f2b4ba63335b72fd51c1, type: 3}
+  _skeletonMagePrefeb: {fileID: 129386177666825227, guid: e04b404c9cde3b64bbacc0e87f32f7f7, type: 3}
+  _orcPrefeb: {fileID: 1227015581287006358, guid: 8e052c0a680702a4ebd1a5eae96ac371, type: 3}
+  _ghoulPrefeb: {fileID: 1533023043300311040, guid: c776fed505b652440ad47bf65bb354fa, type: 3}
+  _pumpkinPrefeb: {fileID: 5958361084596616301, guid: fe6cf32fd53516f4cb2e50b48763432f, type: 3}
+  _dragonPrefeb: {fileID: 1443327365081416391, guid: 3ff3157c7a648b842826417a7df4e08a, type: 3}
 --- !u!4 &2012794479 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 883120403691809223, guid: b47483c1fe9f22546bca092055b64778, type: 3}
