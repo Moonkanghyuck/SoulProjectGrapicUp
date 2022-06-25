@@ -69,8 +69,7 @@ public class Skeleton : MonsterBase
 
 	public override void Delete()
 	{
-		base.Delete();
 		ItemPoolFind.RegisterObject(this);
-
+		base.Delete();
 	}
 }

@@ -63,4 +63,9 @@ public class SkeletonWizard : MonsterBase
 		}
 		return false;
 	}
+	public override void Delete()
+	{
+		ItemPoolFind.RegisterObject(this);
+		base.Delete();
+	}
 }

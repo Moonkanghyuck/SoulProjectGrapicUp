@@ -158,11 +158,14 @@ public class MonsterSpawner : MonoBehaviour
 	private void Spawn<T>(GameObject prefeb, Vector3 pos) where T : IMonster
 	{
 		IMonster monster = ItemPool.GetObject<T>();
-
 		if (monster == null)
 		{
 			monster = Instantiate(prefeb, Vector3.zero, Quaternion.identity, null).GetComponent<T>();
 			monster.GameObject.SetActive(false);
+		}
+		else
+		{
+			Debug.Log("Ç®¸µ");
 		}
 		monster.SetPos(pos);
 		monster.Init();

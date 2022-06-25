@@ -1078,7 +1078,7 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 
 	private IEnumerator DeleteMonster()
 	{
-		yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds(7f);
 		Delete();
 	}
 

@@ -15,12 +15,21 @@ public class SkillUI : MonoBehaviour
 	[SerializeField]
 	private Image _SkillR;
 
+	[SerializeField]
+	private TextMeshProUGUI _skillMLBText;
+	[SerializeField]
+	private TextMeshProUGUI _skillMRBText;
+	[SerializeField]
+	private TextMeshProUGUI _skillEText;
+	[SerializeField]
+	private TextMeshProUGUI _skillRText;
+
 	public void Setting(IMonster monster)
 	{
-		_SkillMLB.gameObject.SetActive(monster.CheckCanMLB());
-		_SkillMRB.gameObject.SetActive(monster.CheckCanMRB());
-		_SKillE.gameObject.SetActive(monster.CheckCanE());
-		_SkillR.gameObject.SetActive(monster.CheckCanR());
+		_skillMLBText.text = monster.CheckCanMLB() ? "MLB" : "LV.1";
+		_skillMRBText.text = monster.CheckCanMRB() ? "MRB" : "LV.10";
+		_skillEText.text = monster.CheckCanE() ? "E" : "LV.30";
+		_skillRText.text = monster.CheckCanR() ? "R" : "LV.50";
 
 		_SkillMLB.fillAmount = monster.CoolTimeMLB;
 		_SkillMRB.fillAmount = monster.CoolTimeMRB;
