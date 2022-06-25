@@ -1022,6 +1022,7 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 		AddSpeed(1);
 		SetEXP(0);
 		_hp = MaxHP;
+		SetSkill();
 	}
 
 
