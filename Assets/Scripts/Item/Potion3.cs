@@ -54,6 +54,17 @@ public class Potion3 : IItem
 			return _itemData;
 		}
 	}
+
+	private NoticeManager NoticeManager
+	{
+		get
+		{
+			_noticeManager ??= GameObject.FindObjectOfType<NoticeManager>();
+			return _noticeManager;
+		}
+	}
+	private NoticeManager _noticeManager;
+
 	private ItemData _itemData;
 	private int _price = 0;
 

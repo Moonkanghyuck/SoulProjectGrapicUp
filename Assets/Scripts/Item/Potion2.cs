@@ -30,7 +30,7 @@ public class Potion2 : IItem
 	{
 		get
 		{
-			return "Postion2";
+			return "하얀 포션";
 		}
 	}
 
@@ -38,7 +38,7 @@ public class Potion2 : IItem
 	{
 		get
 		{
-			return "두번째 포션";
+			return "빙의한 몬스터의 체력을 조금 회복합니다";
 		}
 	}
 
@@ -58,6 +58,16 @@ public class Potion2 : IItem
 		}
 	}
 
+	private NoticeManager NoticeManager
+	{
+		get
+		{
+			_noticeManager ??= GameObject.FindObjectOfType<NoticeManager>();
+			return _noticeManager;
+		}
+	}
+	private NoticeManager _noticeManager;
+
 	private ItemData _itemData;
 	private int _price = 100;
 
@@ -65,6 +75,7 @@ public class Potion2 : IItem
 	{
 		if(Count > 0)
 		{
+			//player.CaptureMonster
 			Debug.Log("포션 2 사용");
 		}
 		else

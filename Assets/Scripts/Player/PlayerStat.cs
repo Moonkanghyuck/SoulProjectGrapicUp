@@ -112,8 +112,21 @@ public class PlayerStat : MonoBehaviour
 	public void AddHP(int hp)
 	{
 		_hp += hp;
+		if(_hp > _maxHp)
+		{
+			_hp = _maxHp;
+		}
 	}
 
+	/// <summary>
+	/// 체력 증가
+	/// </summary>
+	/// <param name="hp"></param>
+	public void AddMaxHP(int hp)
+	{
+		_maxHp += hp;
+		_hp += hp;
+	}
 	/// <summary>
 	/// 경험치 증가
 	/// </summary>

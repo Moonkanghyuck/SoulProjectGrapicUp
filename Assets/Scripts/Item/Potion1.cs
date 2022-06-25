@@ -30,14 +30,14 @@ public class Potion1 : IItem
 	{
 		get
 		{
-			return "Postion1";
+			return "빨간 포션";
 		}
 	}
 	public string Description
 	{
 		get
 		{
-			return "첫번째 포션";
+			return "영혼의 체력을 조금 회복시켜준다";
 		}
 	}
 	public EItem ItemType
@@ -54,20 +54,30 @@ public class Potion1 : IItem
 			return _itemData;
 		}
 	}
+	private NoticeManager NoticeManager
+	{ 
+		get
+		{
+			_noticeManager ??= GameObject.FindObjectOfType<NoticeManager>();
+			return _noticeManager;
+		}
+	}
+	private NoticeManager _noticeManager;
 
 	private ItemData _itemData = null;
 	private int _price = 10;
+
 	public void UseItem(Player player)
 	{
 		if(Count > 0)
 		{
 			player.GetComponent<PlayerStat>().AddHP(10);
 			Count--;
-			Debug.Log("포션 1 사용");
+			NoticeManager.Notice("체력을 조금 회복하셨습니다");
 		}
 		else
 		{
-			Debug.Log("포션이 없습니다");
+			NoticeManager.Notice("아이템이 없습니다");
 		}
 	}
 
