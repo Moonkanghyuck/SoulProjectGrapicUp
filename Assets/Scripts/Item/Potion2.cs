@@ -75,12 +75,21 @@ public class Potion2 : IItem
 	{
 		if(Count > 0)
 		{
-			//player.CaptureMonster
-			Debug.Log("포션 2 사용");
+			if(player.CaptureMonster != null)
+			{
+				player.CaptureMonster.AddHP(10);
+				Count--;
+				NoticeManager.Notice("몬스터의 체력을 조금 회복했습니다");
+			}
+			else
+			{
+				NoticeManager.Notice("빙의한 몬스터가 없습니다");
+			}
+
 		}
 		else
 		{
-			Debug.Log("포션이 없습니다");
+			NoticeManager.Notice("아이템이 없습니다");
 		}
 	}
 	public void AddCount(int add)

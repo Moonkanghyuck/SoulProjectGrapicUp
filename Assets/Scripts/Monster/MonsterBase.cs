@@ -1018,15 +1018,25 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 		++_level;
 		AddMaxHP(5);
 		AddAtk(1);
-		AddDef(1);
-		AddSpd(1);
+		AddDefense(1);
+		AddSpeed(1);
 		SetEXP(0);
+		_hp = MaxHP;
 	}
 
+
+	public void AddHP(int hp)
+	{
+		_hp += hp;
+		if(_hp > MaxHP)
+		{
+			_hp = MaxHP;
+		}
+	}
 	public void AddMaxHP(int add)
 	{
 		_maxhp = _maxhp + add;
-		_hp = _maxhp;
+		_hp += add;
 	}
 	public void AddAtk(int add)
 	{
@@ -1040,16 +1050,6 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 		{
 			_iAttacks[i].AddDamage = _atk;
 		}
-	}
-
-	public void AddDef(int add)
-	{
-		_defense = _defense + add;
-	}
-	public void AddSpd(int add)
-	{
-		_speed = _speed + add;
-		SetSpd();
 	}
 	private void SetSpd()
 	{
@@ -1125,5 +1125,16 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 		{
 			_canSkillR = true;
 		}
+	}
+
+	public void AddSpeed(int spd)
+	{
+		_speed = _speed + spd;
+		SetSpd();
+	}
+
+	public void AddDefense(int def)
+	{
+		_defense = _defense + def;
 	}
 }

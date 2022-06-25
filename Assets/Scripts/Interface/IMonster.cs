@@ -219,6 +219,32 @@ public interface IMonster
 	void AddEXP(int exp);
 
 	/// <summary>
+	/// 체력증가
+	/// </summary>
+	/// <param name="hp"></param>
+	void AddHP(int hp);
+	/// <summary>
+	/// 최대체력증가
+	/// </summary>
+	/// <param name="hp"></param>
+	void AddMaxHP(int maxhp);
+	/// <summary>
+	/// 속도증가
+	/// </summary>
+	/// <param name="hp"></param>
+	void AddSpeed(int spd);
+	/// <summary>
+	/// 방어력증가
+	/// </summary>
+	/// <param name="hp"></param>
+	void AddDefense(int def);
+	/// <summary>
+	/// 공격력
+	/// </summary>
+	/// <param name="hp"></param>
+	void AddAtk(int atk);
+
+	/// <summary>
 	/// 몬스터 삭제 함수
 	/// </summary>
 	void Delete();
