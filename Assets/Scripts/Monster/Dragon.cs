@@ -52,6 +52,7 @@ public class Dragon : MonsterBase
 		if (CheckCoolTimeMRB())
 		{
 			ChangeState(MonsterState.Attack);
+			EffectManagerObj.FireBallEffect(transform.position + transform.forward * 10);
 			_attackState = AttackState.MRB;
 			_coolTimeMRB = 0;
 			return true;
