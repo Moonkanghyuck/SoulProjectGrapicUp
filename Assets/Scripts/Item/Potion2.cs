@@ -69,7 +69,7 @@ public class Potion2 : IItem
 	private NoticeManager _noticeManager;
 
 	private ItemData _itemData;
-	private int _price = 100;
+	private int _price = 10;
 
 	public void UseItem(Player player)
 	{

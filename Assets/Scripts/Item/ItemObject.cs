@@ -23,7 +23,7 @@ public class ItemObject : MonoBehaviour, IInteraction
 	{
 		get
 		{
-			return "Æ÷¼Ç1";
+			return _name;
 		}
 	}
 
@@ -60,6 +60,7 @@ public class ItemObject : MonoBehaviour, IInteraction
 	}
 
 	private ItemPool _itemPool;
+	private string _name;
 
 	public void Setting(IItem item, ItemData itemData, Vector3 pos)
 	{
@@ -76,6 +77,7 @@ public class ItemObject : MonoBehaviour, IInteraction
 		transform.DORotate(new Vector3(0, -360, 0), 5f, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Incremental);
 		transform.localScale = Vector3.one * 0.5f;
 		gameObject.tag = "Item";
+		_name = item.Name;
 
 		gameObject.SetActive(true);
 	}

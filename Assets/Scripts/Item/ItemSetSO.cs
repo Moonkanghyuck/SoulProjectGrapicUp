@@ -67,8 +67,17 @@ public class ItemSetSO : ScriptableObject, IObservable, IInit
 			case EItem.Postion2:
 				item = new Potion2();
 				break;
-			case EItem.Postion3:
-				item = new Potion3();
+			case EItem.ATKUP1:
+				item = new ATKUP1();
+				break;
+			case EItem.DEFUP1:
+				item = new DEFUP1();
+				break;
+			case EItem.EXPUP1:
+				item = new EXPUP1();
+				break;
+			case EItem.SPDUP1:
+				item = new SPDUP1();
 				break;
 		}
 		item.SetItemData(itemData);
@@ -115,8 +124,17 @@ public class ItemData
 			case EItem.Postion2:
 				item = new Potion2();
 				break;
-			case EItem.Postion3:
-				item = new Potion3();
+			case EItem.ATKUP1:
+				item = new ATKUP1();
+				break;
+			case EItem.DEFUP1:
+				item = new DEFUP1();
+				break;
+			case EItem.EXPUP1:
+				item = new EXPUP1();
+				break;
+			case EItem.SPDUP1:
+				item = new SPDUP1();
 				break;
 		}
 		item.SetItemData(this);

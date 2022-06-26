@@ -7,5 +7,8 @@ public enum EItem
 	None = 0,
 	Postion1 = 1,
 	Postion2 = 2,
-	Postion3 = 3,
+	ATKUP1,
+	DEFUP1,
+	EXPUP1,
+	SPDUP1,
 }
