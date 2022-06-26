@@ -36,10 +36,16 @@ public class MonsterSpawner : MonoBehaviour
 	[SerializeField]
 	private GameObject _dragonPrefeb;
 	private int _monsterCount = 0;
+	private bool _endGameNow = false;
 
 	public void Update()
 	{
-		if(_monsterCount < 10)
+		if(_endGameNow && _playerStat.Level >= 100)
+		{
+			_endGameNow = true;
+			AllMonsterDelete();
+		}
+		else if(_monsterCount < 10)
 		{
 			SpawnMonster();
 		}
@@ -54,6 +60,16 @@ public class MonsterSpawner : MonoBehaviour
 	public void RemoveCount()
 	{
 		_monsterCount--;
+	}
+
+	private void AllMonsterDelete()
+	{
+		for (; 0 < _monsters.Count;)
+		{
+			IMonster monster = _monsters[0];
+			monster.Delete();
+			_monsters.Remove(monster);
+		}
 	}
 
 	/// <summary>
@@ -162,10 +178,6 @@ public class MonsterSpawner : MonoBehaviour
 		{
 			monster = Instantiate(prefeb, Vector3.zero, Quaternion.identity, null).GetComponent<T>();
 			monster.GameObject.SetActive(false);
-		}
-		else
-		{
-			Debug.Log("Ç®¸µ");
 		}
 		monster.SetPos(pos);
 		monster.Init();
