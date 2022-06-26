@@ -16,6 +16,14 @@ public class MonsterSpawner : MonoBehaviour
 			_itemPool = value;
 		}
 	}
+	private NoticeManager NoticeManager
+	{
+		get
+		{
+			_noticeManager ??= GetComponent<NoticeManager>();
+			return _noticeManager;
+		}
+	}
 
 	[SerializeField]
 	private Transform _player;
@@ -35,6 +43,7 @@ public class MonsterSpawner : MonoBehaviour
 	private GameObject _pumpkinPrefeb;
 	[SerializeField]
 	private GameObject _dragonPrefeb;
+	private NoticeManager _noticeManager;
 	private int _monsterCount = 0;
 	private bool _finalGame = false;
 	private bool _endGame = false;
@@ -43,6 +52,7 @@ public class MonsterSpawner : MonoBehaviour
 	{
 		if(!_endGame && !_finalGame && _playerStat.Level >= 40)
 		{
+			NoticeManager.Notice("보스몬스터 드래곤이 출현");
 			_finalGame = true;
 			AllMonsterDelete();
 			SpawnDragon(_player.transform.position + _player.transform.forward * 100);
@@ -76,8 +86,13 @@ public class MonsterSpawner : MonoBehaviour
 
 	public void GameEnd()
 	{
-		_endGame = true;
-		_finalGame = false;
+		if(!_endGame )
+		{
+			NoticeManager.Notice("보스몬스터를 클리어하셨습니다!");
+			NoticeManager.Notice("엔딩달성");
+			_endGame = true;
+			_finalGame = false;
+		}
 	}
 
 	/// <summary>

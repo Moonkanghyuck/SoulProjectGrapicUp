@@ -884,10 +884,10 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 		if (_monsterState != MonsterState.Die)
 		{
 			ChangeState(MonsterState.Die);
-			NoticeManager.Notice(10);
+			NoticeManager.Notice(10 * Level);
 			PlayerStat playerStat = _player.GetComponent<PlayerStat>();
-			playerStat.AddExp(10);
-			playerStat.AddMoney(10);
+			playerStat.AddExp(10 * Level);
+			playerStat.AddMoney(10 * Level);
 			ItemDrop();
 			StartCoroutine(DeleteMonster());
 		}
