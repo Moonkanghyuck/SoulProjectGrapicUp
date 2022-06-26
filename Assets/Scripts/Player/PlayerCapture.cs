@@ -66,8 +66,9 @@ public class PlayerCapture : MonoBehaviour
 		RaycastHit raycastHit;
 
 		int layerMask = 1 << LayerMask.NameToLayer("Monster");  // 몬스터 레이어만 충돌 체크함
-		if (Physics.Raycast(ray, out raycastHit) || Physics.Raycast(ray2, out raycastHit, layerMask))
+		if (Physics.Raycast(ray, out raycastHit, layerMask) || Physics.Raycast(ray2, out raycastHit, layerMask))
 		{
+			Debug.Log($"{raycastHit.collider.gameObject.name}");
 			var monster = raycastHit.collider.gameObject.GetComponent<IMonster>();
 			if (_player.SelectMonster != null & monster != _player.SelectMonster)
 			{
