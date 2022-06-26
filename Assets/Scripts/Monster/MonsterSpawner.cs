@@ -134,14 +134,14 @@ public class MonsterSpawner : MonoBehaviour
 			IMonster monster = ItemPool.GetObject<Skeleton>();
 
 			float skeletonPercent = 100 - _playerStat.Level;
-			float skeletonMagePercent = _playerStat.Level + 10;
-			float goulPercent = _playerStat.Level + 30;
-			float orcPercent = _playerStat.Level + 20;
-			float pumpkinPercent = _playerStat.Level + 10;
+			float skeletonMagePercent = _playerStat.Level + 5;
+			float goulPercent = _playerStat.Level + 3;
+			float orcPercent = _playerStat.Level + 1;
+			float pumpkinPercent = _playerStat.Level;
 			float dragonPercent = 0;
 			if (_endGame)
 			{
-				dragonPercent = _playerStat.Level;
+				dragonPercent = 10;
 			}
 			float[] probs = new float[6] { skeletonPercent, skeletonMagePercent, goulPercent, orcPercent, pumpkinPercent, dragonPercent };
 
