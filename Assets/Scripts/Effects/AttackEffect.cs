@@ -8,6 +8,7 @@ public class AttackEffect : MonoBehaviour
 	{
 		get
 		{
+			_itemPool ??= FindObjectOfType<ItemPool>();
 			return _itemPool;
 		}
 	}
@@ -21,7 +22,7 @@ public class AttackEffect : MonoBehaviour
 	}
 	private void EndEffect()
 	{
-		_itemPool.RegisterObject(this);
+		ItemPool.RegisterObject(this);
 		gameObject.SetActive(false);
 	}
 }
