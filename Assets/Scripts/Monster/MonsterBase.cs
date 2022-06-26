@@ -535,19 +535,19 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 					float angle = GetTargetToAngle();
 					if (distance.magnitude < _atkRange && angle < _viewAngle / 2)
 					{
-						if(CheckCoolTimeR())
-						{
-							KeyRSkill();
-						}
-						else if (CheckCoolTimeE())
-						{
-							KeyESkill();
-						}
-						else if(CheckCoolTimeMRB())
-						{
-							MouseRButtonSkill();
-						}
-						else if(CheckCoolTimeMLB())
+						//if(CheckCoolTimeR())
+						//{
+						//	KeyRSkill();
+						//}
+						//else if (CheckCoolTimeE())
+						//{
+						//	KeyESkill();
+						//}
+						//else if(CheckCoolTimeMRB())
+						//{
+						//	MouseRButtonSkill();
+						//}
+						if(CheckCoolTimeMLB())
 						{
 							MouseLButtonSkill();
 						}
