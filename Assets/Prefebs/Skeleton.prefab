@@ -1537,6 +1537,7 @@ MonoBehaviour:
   _monsterState: 0
   _beforeMonsterState: 0
   _attackState: 0
+  _originLevel: 1
   _level: 1
   _selection: {fileID: 2085715349936681478}
   _centerPivot: {fileID: 2085715349936990007}

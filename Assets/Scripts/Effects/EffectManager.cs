@@ -8,6 +8,8 @@ public class EffectManager : MonoBehaviour
 {
 	[SerializeField]
 	private GameObject _textEffect;
+	[SerializeField]
+	private GameObject _attackEffect;
 
 	private ItemPool _itemPool;
 
@@ -25,6 +27,17 @@ public class EffectManager : MonoBehaviour
 		}
 		textAtkEffect.transform.position = pos;
 		textAtkEffect.Setting(damage);
+	}
+
+	public void AttackEffect(Vector3 pos)
+	{
+		AttackEffect atkEffect = _itemPool.GetObject<AttackEffect>();
+		if (atkEffect == null)
+		{
+			atkEffect = Instantiate(_attackEffect, pos, Quaternion.identity, null).GetComponent<AttackEffect>();
+		}
+		atkEffect.transform.position = pos;
+		atkEffect.Setting();
 	}
 
 }

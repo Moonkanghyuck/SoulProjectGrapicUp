@@ -15,13 +15,6 @@ interface IAttack
 		get;
 		set;
 	}
-
-	public GameObject Effect
-	{
-		get;
-		set;
-	}
-
 	public int OriginDamage
 	{
 		get;

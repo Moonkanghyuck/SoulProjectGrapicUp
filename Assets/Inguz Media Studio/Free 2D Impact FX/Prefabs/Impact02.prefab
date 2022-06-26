@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6192724089161036655}
   - component: {fileID: 6192724089161036654}
   - component: {fileID: 1931893235768170830}
+  - component: {fileID: 1720221926736409156}
   m_Layer: 0
   m_Name: Impact02
   m_TagString: Untagged
@@ -4979,3 +4980,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1720221926736409156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6192724089161036641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6670eec51ac5c254391bfeb8cffa267c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -851,8 +851,7 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 		}
 		_hp -= damage;
 		EffectManagerObj.SetTextEffect(damage, Position);
-
-		Instantiate(iAttack.Effect, _centerPivot.position, Quaternion.identity);
+		EffectManagerObj.AttackEffect(Position);
 		if (_hp > 0)
 		{
 			ChangeState(MonsterState.Damage);

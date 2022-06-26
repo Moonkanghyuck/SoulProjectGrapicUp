@@ -3818,33 +3818,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 982753853312833541, guid: 1e758442ff8a04a48adb3790078a223b, type: 3}
-      propertyPath: _moveSpeed
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 982753854348644958, guid: 1e758442ff8a04a48adb3790078a223b, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 982753854348648326, guid: 1e758442ff8a04a48adb3790078a223b, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 982753854348825912, guid: 1e758442ff8a04a48adb3790078a223b, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 982753854348841312, guid: 1e758442ff8a04a48adb3790078a223b, type: 3}
       propertyPath: m_Name
       value: Soul
-      objectReference: {fileID: 0}
-    - target: {fileID: 982753854348841312, guid: 1e758442ff8a04a48adb3790078a223b, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 982753854348849986, guid: 1e758442ff8a04a48adb3790078a223b, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 982753854349080280, guid: 1e758442ff8a04a48adb3790078a223b, type: 3}
       propertyPath: m_RootOrder
@@ -5530,6 +5506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _textEffect: {fileID: 7807450877405194234, guid: 7e37085a51809bf4bba5f70bd3b65362, type: 3}
+  _attackEffect: {fileID: 6192724089161036641, guid: e17d9a3f04750764c8c0a7a0461e4c3b, type: 3}
 --- !u!4 &1674128684 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5929208353965183074, guid: 67143f4ca4712b74d976245b72441097, type: 3}

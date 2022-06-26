@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 982753854349012894}
   - component: {fileID: 982753854367349192}
   - component: {fileID: 982753854366543198}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: particle glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4766,7 +4766,7 @@ GameObject:
   - component: {fileID: 982753854349019600}
   - component: {fileID: 982753854367339832}
   - component: {fileID: 982753854366502146}
-  m_Layer: 1
+  m_Layer: 6
   m_Name: particle ray random
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9377,7 +9377,7 @@ GameObject:
   - component: {fileID: 982753854349108312}
   - component: {fileID: 982753854367447340}
   - component: {fileID: 982753854366502498}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: particle spark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14138,7 +14138,7 @@ GameObject:
   - component: {fileID: 1984584012}
   - component: {fileID: 1984584011}
   - component: {fileID: 6769009013150245665}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Soul
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -18889,7 +18889,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 338a961290b1b5443b566f374b22a044, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 5
+  _moveSpeed: 20
   _gravitySpeed: 3
   _rotateSpeed: 200
   _bodyRotateSpeed: 1
@@ -18978,7 +18978,7 @@ MonoBehaviour:
   _maxHp: 30
   _speed: 30
   _defense: 30
-  _level: 2
+  _level: 5
   _exp: 0
   _moneySO: {fileID: 11400000, guid: d0398193587a92145abd8441ea7a7128, type: 2}
 --- !u!1 &982753854348849986
@@ -18992,7 +18992,7 @@ GameObject:
   - component: {fileID: 982753854348986808}
   - component: {fileID: 982753854367353262}
   - component: {fileID: 982753854366423176}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: particle soul billboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}

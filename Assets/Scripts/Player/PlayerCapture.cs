@@ -80,7 +80,7 @@ public class PlayerCapture : MonoBehaviour
 			{
 				if (_player.SelectMonster != null)
 				{
-					if (_player.SelectMonster.CheckCapture(1))
+					if (_player.SelectMonster.CheckCapture(_playerStat.Level))
 					{
 						_player.IsCantAnything = true;
 						_player.CaptureMonster = _player.SelectMonster;

@@ -179,8 +179,7 @@ public class PlayerStat : MonoBehaviour
 		}
 		_hp -= damage;
 		_player.EffectManagerObj.SetTextEffect(damage, transform.position);
-
-		Instantiate(iAttack.Effect, transform.position, Quaternion.identity);
+		_player.EffectManagerObj.AttackEffect(transform.position);
 		_player.BattleUICanvas?.SettingSoulInfo(this);
 		if (_hp <= 0)
 		{
