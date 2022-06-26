@@ -16,6 +16,8 @@ public class OptionManager : MonoBehaviour
 	private GameObject _soulPanel;
 	[SerializeField]
 	private GameObject _monsterPanel;
+	[SerializeField]
+	private GameObject _quitPanel;
 
 	[SerializeField]
 	private Button _inventoryButton;
@@ -23,12 +25,25 @@ public class OptionManager : MonoBehaviour
 	private Button _soulButton;
 	[SerializeField]
 	private Button _monsterButton;
+	[SerializeField]
+	private Button _quitButton;
+	[SerializeField]
+	private Button _quitNoButton;
+	[SerializeField]
+	private Button _quitYesButton;
+
 
 	private void Start()
 	{
 		_inventoryButton.onClick.AddListener(() => InventoryPanelActive());
 		_soulButton.onClick.AddListener(() => SoulPanelActive());
 		_monsterButton.onClick.AddListener(() => MonsterPanelActive());
+
+		_quitButton.onClick.AddListener(() => OpenQuitPanel());
+		_quitNoButton.onClick.AddListener(() => CloseQuitPanel());
+		_quitYesButton.onClick.AddListener(() => MoveMainScene());
+
+
 	}
 	private void Update()
 	{
@@ -76,6 +91,7 @@ public class OptionManager : MonoBehaviour
 		_moneyInventory.SetActiveMoenyCanvas(_optionCanvas.gameObject.activeSelf);
 		Time.timeScale = _optionCanvas.gameObject.activeSelf ? 0 : 1;
 		_moneyInventory.SetActiveMoenyCanvas(_optionCanvas.gameObject.activeSelf);
+		_quitPanel.gameObject.SetActive(false);
 
 		if (_optionCanvas.gameObject.activeSelf)
 		{
@@ -106,5 +122,17 @@ public class OptionManager : MonoBehaviour
 		_monsterPanel.SetActive(true);
 		_inventoryPanel.SetActive(false);
 		_soulPanel.SetActive(false);
+	}
+	private void OpenQuitPanel()
+	{
+		_quitPanel.SetActive(true);
+	}
+	private void CloseQuitPanel()
+	{
+		_quitPanel.SetActive(false);
+	}
+	private void MoveMainScene()
+	{
+		LoadingManager.LoadScene("Title");
 	}
 }
