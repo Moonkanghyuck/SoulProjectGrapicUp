@@ -51,13 +51,28 @@ public class Orc : MonsterBase
 	{
 		if (CheckCoolTimeMRB())
 		{
-			ChangeState(MonsterState.Attack);
-			_attackState = AttackState.MRB;
+			//ChangeState(MonsterState.Attack);
+			//_attackState = AttackState.MRB;
+			transform.localScale = Vector3.one * 1.2f;
+			_atk += 5;
+			_defense += 5;
+			_speed += 5;
 			_coolTimeMRB = 0;
+			Invoke("StatOrigin", 5f);
 			return true;
 		}
 		return false;
 	}
+
+	private void StatOrigin()
+	{
+		transform.localScale = Vector3.one * 1f;
+		_atk -= 5;
+		_defense -= 5;
+		_speed -= 5;
+		_coolTimeMRB = 0;
+	}
+
 	public override void Delete()
 	{
 		ItemPoolFind.RegisterObject(this);

@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class Skeleton : MonsterBase
 {
-	[SerializeField]
-	private GameObject _skillRProjectile;
-
-
 	public override void Start()
 	{
 		base.Start();
