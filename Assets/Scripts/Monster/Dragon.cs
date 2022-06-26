@@ -62,6 +62,7 @@ public class Dragon : MonsterBase
 	public override void Delete()
 	{
 		ItemPoolFind.RegisterObject(this);
+		MonsterSpawner.GameEnd();
 		base.Delete();
 	}
 }

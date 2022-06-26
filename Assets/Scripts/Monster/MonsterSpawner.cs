@@ -35,19 +35,19 @@ public class MonsterSpawner : MonoBehaviour
 	private GameObject _pumpkinPrefeb;
 	[SerializeField]
 	private GameObject _dragonPrefeb;
-	[SerializeField]
-	private GameObject _endMonster;
 	private int _monsterCount = 0;
-	private bool _endGameNow = false;
+	private bool _finalGame = false;
+	private bool _endGame = false;
 
 	public void Update()
 	{
-		if(_endGameNow && _playerStat.Level >= 100)
+		if(!_endGame && !_finalGame && _playerStat.Level >= 60)
 		{
-			_endGameNow = true;
+			_finalGame = true;
 			AllMonsterDelete();
+			SpawnDragon(_player.transform.position + _player.transform.forward * 100);
 		}
-		else if(_monsterCount < 10)
+		else if(_monsterCount < 10 && (_endGame || !_finalGame))
 		{
 			SpawnMonster();
 		}
@@ -72,6 +72,12 @@ public class MonsterSpawner : MonoBehaviour
 			monster.Delete();
 			_monsters.Remove(monster);
 		}
+	}
+
+	public void GameEnd()
+	{
+		_endGame = true;
+		_finalGame = false;
 	}
 
 	/// <summary>
@@ -117,8 +123,7 @@ public class MonsterSpawner : MonoBehaviour
 			float goulPercent = _playerStat.Level + 30;
 			float orcPercent = _playerStat.Level + 20;
 			float pumpkinPercent = _playerStat.Level + 10;
-			float dragonPercent = _playerStat.Level;
-			float[] probs = new float[6] {skeletonPercent, skeletonMagePercent, goulPercent, orcPercent, pumpkinPercent, dragonPercent };
+			float[] probs = new float[5] {skeletonPercent, skeletonMagePercent, goulPercent, orcPercent, pumpkinPercent };
 			switch (Choose(probs))
 			{
 				case 0:
@@ -135,9 +140,6 @@ public class MonsterSpawner : MonoBehaviour
 					break;
 				case 4:
 					SpawnPumpkin(spawnVector);
-					break;
-				case 5:
-					SpawnDragon(spawnVector);
 					break;
 			}
 		}
