@@ -303,7 +303,9 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 	[SerializeField]
 	protected AttackState _attackState = AttackState.None; //몬스터 상태
 	[SerializeField]
-	private int _level = 5; //초기 레벨
+	private int _originLevel = 5; //초기 레벨
+	[SerializeField]
+	private int _level = 5; //레벨
 	[SerializeField]
 	private GameObject _selection = null; //선택될 때 킬 쉐이더 오브젝트
 	[SerializeField]
@@ -411,6 +413,7 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 	}
 	public void Init()
 	{
+		_level = _originLevel + Random.Range(0, 2);
 		_maxhp = _originMaxHP + Random.Range(50, 200); ;
 		_hp = _maxhp;
 		_atk = _originAtk + Random.Range(5, 10); ;
@@ -841,7 +844,7 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 	/// <param name="iAttack"></param>
 	private void Damaged(IAttack iAttack)
 	{
-		int damage = (iAttack.Damage - _defense);
+		int damage = (iAttack.Damage - _defense) + Random.Range(-5, 5);
 		if(damage <= 0)
 		{
 			damage = 1;
