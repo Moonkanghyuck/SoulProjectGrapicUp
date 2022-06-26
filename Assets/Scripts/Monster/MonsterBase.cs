@@ -570,7 +570,11 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 	{
 		float distance = Vector3.Distance(_targetCharacter.transform.position, transform.position);
 		float angle = GetTargetToAngle();
-		if ((distance > _atkRange + 0.5f || angle >= _viewAngle / 2) && _animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.99f )
+		if(_targetCharacter == null || !_targetCharacter.activeSelf)
+		{
+			ChangeState(MonsterState.Idle);
+		}
+		else if ((distance > _atkRange + 0.5f || angle >= _viewAngle / 2) && _animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.99f )
 		{
 			ChangeState(MonsterState.GoTarget);
 		}
