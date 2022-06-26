@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class OptionManager : MonoBehaviour
 {
@@ -133,6 +134,6 @@ public class OptionManager : MonoBehaviour
 	}
 	private void MoveMainScene()
 	{
-		LoadingManager.LoadScene("Title");
+        	SceneManager.LoadScene("Title");
 	}
 }
