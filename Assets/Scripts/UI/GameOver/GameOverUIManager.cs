@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameOverUIManager : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class GameOverUIManager : MonoBehaviour
 	}
 
 	/// <summary>
-	/// °ÔÀÓ¿À¹ö¾À ¼³Á¤
+	/// ê²Œì„ì˜¤ë²„ì”¬ ì„¤ì •
 	/// </summary>
 	public void Setting()
 	{
@@ -44,7 +45,7 @@ public class GameOverUIManager : MonoBehaviour
 	}
 
 	/// <summary>
-	/// °ÔÀÓ¿À¹ö ¹öÆ° È°¼ºÈ­
+	/// ê²Œì„ì˜¤ë²„ ë²„íŠ¼ í™œì„±í™”
 	/// </summary>
 	private void SetActiveButton()
 	{
@@ -55,7 +56,7 @@ public class GameOverUIManager : MonoBehaviour
 	}
 
 	/// <summary>
-	/// °ÔÀÓ ¿À¹ö½Ã ´Ù½Ã ½ÃÀÛ
+	/// ê²Œì„ ì˜¤ë²„ì‹œ ë‹¤ì‹œ ì‹œì‘
 	/// </summary>
 	private void Retry()
 	{
@@ -63,11 +64,11 @@ public class GameOverUIManager : MonoBehaviour
 	}
 	
 	/// <summary>
-	/// Å¸ÀÌÆ² ¾ÀÀ¸·Î ÀÌµ¿
+	/// íƒ€ì´í‹€ ì”¬ìœ¼ë¡œ ì´ë™
 	/// </summary>
 	private void MoveToMain()
 	{
-
+        	SceneManager.LoadScene("Title");
 	}
 
 }
