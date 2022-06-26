@@ -51,8 +51,8 @@ public class Orc : MonsterBase
 	{
 		if (CheckCoolTimeMRB())
 		{
-			//ChangeState(MonsterState.Attack);
-			//_attackState = AttackState.MRB;
+			ChangeState(MonsterState.Attack);
+			_attackState = AttackState.MRB;
 			transform.localScale = Vector3.one * 1.2f;
 			_atk += 5;
 			_defense += 5;

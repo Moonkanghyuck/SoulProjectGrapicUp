@@ -39,8 +39,8 @@ public class Ghoul : MonsterBase
 	{
 		if (CheckCoolTimeMLB())
 		{
-			//ChangeState(MonsterState.Attack);
-			//_attackState = AttackState.MLB;
+			ChangeState(MonsterState.Attack);
+			_attackState = AttackState.MLB;
 			if(_targetCharacter == null)
 			{
 				NoticeManager.Notice("목표 대상이 없습니다");
@@ -59,8 +59,8 @@ public class Ghoul : MonsterBase
 	{
 		if (CheckCoolTimeMRB())
 		{
-			//ChangeState(MonsterState.Attack);
-			//_attackState = AttackState.MRB;
+			ChangeState(MonsterState.Attack);
+			_attackState = AttackState.MRB;
 			HP = MaxHP;
 			_coolTimeMRB = 0;
 			return true;

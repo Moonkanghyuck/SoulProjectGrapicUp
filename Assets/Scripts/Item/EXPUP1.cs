@@ -71,16 +71,9 @@ public class EXPUP1 : IItem
 	{
 		if (Count > 0)
 		{
-			if (player.CaptureMonster != null)
-			{
-				player.CaptureMonster.AddEXP(100);
-				Count--;
-				NoticeManager.Notice("경험치 증가 100");
-			}
-			else
-			{
-				NoticeManager.Notice("빙의한 몬스터가 없습니다");
-			}
+			player.gameObject.GetComponent<PlayerStat>().AddExp(100);
+			Count--;
+			NoticeManager.Notice("경험치 증가 100");
 		}
 		else
 		{

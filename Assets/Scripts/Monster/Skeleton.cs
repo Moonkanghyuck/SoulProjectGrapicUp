@@ -15,8 +15,8 @@ public class Skeleton : MonsterBase
 	{
 		if (CheckCoolTimeE())
 		{
-			//ChangeState(MonsterState.Attack);
-			//_attackState = AttackState.E;
+			ChangeState(MonsterState.Attack);
+			_attackState = AttackState.E;
 			_characterController.Move(transform.forward * 10);
 			_coolTimeE = 0;
 			return true;

@@ -47,7 +47,7 @@ public class MonsterSpawner : MonoBehaviour
 			AllMonsterDelete();
 			SpawnDragon(_player.transform.position + _player.transform.forward * 100);
 		}
-		else if(_monsterCount < 10 && (_endGame || !_finalGame))
+		else if(_monsterCount < 20 && (_endGame || !_finalGame))
 		{
 			SpawnMonster();
 		}
@@ -123,16 +123,12 @@ public class MonsterSpawner : MonoBehaviour
 			float goulPercent = _playerStat.Level + 30;
 			float orcPercent = _playerStat.Level + 20;
 			float pumpkinPercent = _playerStat.Level + 10;
-			float dragonPercent = _playerStat.Level;
-			float[] probs;
+			float dragonPercent = 0;
 			if (_endGame)
 			{
-				probs = new float[5] { skeletonPercent, skeletonMagePercent, goulPercent, orcPercent, pumpkinPercent };
+				dragonPercent = _playerStat.Level;
 			}
-			else
-			{
-				probs = new float[6] { skeletonPercent, skeletonMagePercent, goulPercent, orcPercent, pumpkinPercent, dragonPercent};
-			}
+			float[] probs = new float[6] { skeletonPercent, skeletonMagePercent, goulPercent, orcPercent, pumpkinPercent, dragonPercent };
 
 			switch (Choose(probs))
 			{
