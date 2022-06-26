@@ -74,7 +74,7 @@ public class PlayerStat : MonoBehaviour
 		}
 	}
 
-	//ÀÎ½ºÆåÅÍ¿¡¼­ ¼³Á¤ÇÒ ¼ö ÀÖ´Â º¯¼öµé
+	//ï¿½Î½ï¿½ï¿½ï¿½ï¿½Í¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	[SerializeField]
 	private int _hp = 30;
 	[SerializeField]
@@ -107,7 +107,7 @@ public class PlayerStat : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Ã¼·Â Áõ°¡
+	/// Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	/// </summary>
 	/// <param name="hp"></param>
 	public void AddHP(int hp)
@@ -117,19 +117,21 @@ public class PlayerStat : MonoBehaviour
 		{
 			_hp = _maxHp;
 		}
+		_player.BattleUICanvas?.SettingSoulInfo(this);
 	}
 
 	/// <summary>
-	/// Ã¼·Â Áõ°¡
+	/// Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	/// </summary>
 	/// <param name="hp"></param>
 	public void AddMaxHP(int hp)
 	{
 		_maxHp += hp;
 		_hp += hp;
+		_player.BattleUICanvas?.SettingSoulInfo(this);
 	}
 	/// <summary>
-	/// °æÇèÄ¡ Áõ°¡
+	/// ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
 	/// </summary>
 	/// <param name="exp"></param>
 	public void AddExp(int exp)
@@ -144,10 +146,11 @@ public class PlayerStat : MonoBehaviour
 		{
 			_player.CaptureMonster.AddEXP(exp);
 		}
+		_player.BattleUICanvas?.SettingSoulInfo(this);
 	}
 
 	/// <summary>
-	/// µ· Áõ°¡
+	/// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	/// </summary>
 	/// <param name="add"></param>
 	public void AddMoney(int add)
@@ -156,7 +159,7 @@ public class PlayerStat : MonoBehaviour
 	}
 
 	/// <summary>
-	/// ·¹º§¾÷
+	/// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	/// </summary>
 	private void LevelUP()
 	{
@@ -167,7 +170,7 @@ public class PlayerStat : MonoBehaviour
 
 
 	/// <summary>
-	/// °ø°Ý¹ÞÀ½
+	/// ï¿½ï¿½ï¿½Ý¹ï¿½ï¿½ï¿½
 	/// </summary>
 	/// <param name="iAttack"></param>
 	private void Damaged(IAttack iAttack)
@@ -207,7 +210,7 @@ public class PlayerStat : MonoBehaviour
 			var iAttack = other.GetComponent<IAttack>();
 			if (!iAttack.IsPlayer)
 			{
-				//°ø°Ý¹ÞÀ½
+				//ï¿½ï¿½ï¿½Ý¹ï¿½ï¿½ï¿½
 				Damaged(iAttack);
 			}
 		}
