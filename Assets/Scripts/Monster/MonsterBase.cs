@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class MonsterBase : MonoBehaviour, IMonster
 {
 
-	//¸ó½ºÅÍ »óÅÂ
+	//ëª¬ìŠ¤í„° ìƒíƒœ
 	public enum MonsterState
 	{
 		None,
@@ -26,7 +26,7 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 		R
 	}
 
-	//ÇÁ·ÎÆÛÆ¼
+	//í”„ë¡œí¼í‹°
 	public string Name
 	{
 		get
@@ -295,66 +295,66 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 		}
 	}
 
-	//ÀÎ½ºÆåÅÍ¿¡¼­ È®ÀÎÇÒ ¼ö ÀÖ´Â ¼Ó¼º
+	//ì¸ìŠ¤í™í„°ì—ì„œ í™•ì¸í•  ìˆ˜ ìˆëŠ” ì†ì„±
 	[SerializeField]
-	protected MonsterState _monsterState = MonsterState.None; //¸ó½ºÅÍ »óÅÂ
+	protected MonsterState _monsterState = MonsterState.None; //ëª¬ìŠ¤í„° ìƒíƒœ
 	[SerializeField]
-	protected MonsterState _beforeMonsterState = MonsterState.None; //¸ó½ºÅÍ »óÅÂ
+	protected MonsterState _beforeMonsterState = MonsterState.None; //ëª¬ìŠ¤í„° ìƒíƒœ
 	[SerializeField]
-	protected AttackState _attackState = AttackState.None; //¸ó½ºÅÍ »óÅÂ
+	protected AttackState _attackState = AttackState.None; //ëª¬ìŠ¤í„° ìƒíƒœ
 	[SerializeField]
-	private int _originLevel = 5; //ÃÊ±â ·¹º§
+	private int _originLevel = 5; //ì´ˆê¸° ë ˆë²¨
 	[SerializeField]
-	private int _level = 5; //·¹º§
+	private int _level = 5; //ë ˆë²¨
 	[SerializeField]
-	private GameObject _selection = null; //¼±ÅÃµÉ ¶§ Å³ ½¦ÀÌ´õ ¿ÀºêÁ§Æ®
+	private GameObject _selection = null; //ì„ íƒë  ë•Œ í‚¬ ì‰ì´ë” ì˜¤ë¸Œì íŠ¸
 	[SerializeField]
-	private Transform _centerPivot; //Áß½ÉÁ¡ Æ®·£½ºÆû
+	private Transform _centerPivot; //ì¤‘ì‹¬ì  íŠ¸ëœìŠ¤í¼
 	[SerializeField]
-	private float _originMoveSpeed = 0f; //±âº» ÀÌµ¿¼Óµµ
+	private float _originMoveSpeed = 0f; //ê¸°ë³¸ ì´ë™ì†ë„
 	[SerializeField]
-	private float _gravitySpeed = 0f; //Áß·Â¼Óµµ
+	private float _gravitySpeed = 0f; //ì¤‘ë ¥ì†ë„
 	[SerializeField]
-	private float _rotateSpeed = 100.0f; //¹æÇâ È¸Àü¼Óµµ
+	private float _rotateSpeed = 100.0f; //ë°©í–¥ íšŒì „ì†ë„
 	[SerializeField]
-	private float _bodyRotateSpeed = 50.0f; //¸öÅë È¸Àü¼Óµµ
+	private float _bodyRotateSpeed = 50.0f; //ëª¸í†µ íšŒì „ì†ë„
 	[Range(0.01f, 1f)]
 	[SerializeField]
-	private float velocityChangeSpeed = 0.01f; //°¡º¯ Áõ°¡°ª
+	private float velocityChangeSpeed = 0.01f; //ê°€ë³€ ì¦ê°€ê°’
 	[SerializeField]
-	private int _maxhp = 100; //ÃÖ´ëÃ¼·Â
+	private int _maxhp = 100; //ìµœëŒ€ì²´ë ¥
 	[SerializeField]
-	private int _hp = 100; //Ã¼·Â
+	private int _hp = 100; //ì²´ë ¥
 	[SerializeField]
-	private float _atkRange = 1.5f; //¸ó½ºÅÍ °ø°İ °Å¸®
+	private float _atkRange = 1.5f; //ëª¬ìŠ¤í„° ê³µê²© ê±°ë¦¬
 	[SerializeField]
-	protected GameObject _targetCharacter = null; //¸ó½ºÅÍÀÇ Å¸°Ù
+	protected GameObject _targetCharacter = null; //ëª¬ìŠ¤í„°ì˜ íƒ€ê²Ÿ
 	[SerializeField]
-	private float _viewAngle; //½Ã¾ß°¢
+	private float _viewAngle; //ì‹œì•¼ê°
 	[SerializeField]
-	private float _groundHeight; //¶¥¿¡¼­ºÎÅÍ ¶³¾îÁú ³ôÀÌ
+	private float _groundHeight; //ë•…ì—ì„œë¶€í„° ë–¨ì–´ì§ˆ ë†’ì´
 	[SerializeField]
-	private Sprite _monsterSprite; //¸ó½ºÅÍ ½ºÇÁ¶óÀÌÆ®
+	private Sprite _monsterSprite; //ëª¬ìŠ¤í„° ìŠ¤í”„ë¼ì´íŠ¸
 	[SerializeField]
-	protected float _coolTimeSpeedMLB = 10.0f; //¸¶¿ì½º ÁÂÅ¬¸¯ ÄğÅ¸ÀÓ Áõ°¡¼Óµµ
+	protected float _coolTimeSpeedMLB = 10.0f; //ë§ˆìš°ìŠ¤ ì¢Œí´ë¦­ ì¿¨íƒ€ì„ ì¦ê°€ì†ë„
 	[SerializeField]
-	protected float _coolTimeSpeedMRB = 10.0f; //¸¶¿ì½º ¿ìÅ¬¸¯ ÄğÅ¸ÀÓ Áõ°¡¼Óµµ
+	protected float _coolTimeSpeedMRB = 10.0f; //ë§ˆìš°ìŠ¤ ìš°í´ë¦­ ì¿¨íƒ€ì„ ì¦ê°€ì†ë„
 	[SerializeField]
-	protected float _coolTimeSpeedE = 10.0f; //E ÄğÅ¸ÀÓ Áõ°¡¼Óµµ
+	protected float _coolTimeSpeedE = 10.0f; //E ì¿¨íƒ€ì„ ì¦ê°€ì†ë„
 	[SerializeField]
-	protected float _coolTimeSpeedR = 10.0f; //R ÄğÅ¸ÀÓ Áõ°¡¼Óµµ
+	protected float _coolTimeSpeedR = 10.0f; //R ì¿¨íƒ€ì„ ì¦ê°€ì†ë„
 	[SerializeField]
-	protected int _atk = 10; //°ø°İ ½ºÅÈ
+	protected int _atk = 10; //ê³µê²© ìŠ¤íƒ¯
 	[SerializeField]
-	protected int _speed = 10; //¼Óµµ ½ºÅÈ
+	protected int _speed = 10; //ì†ë„ ìŠ¤íƒ¯
 	[SerializeField]
-	protected int _defense = 10; //¹æ¾î·Â ½ºÅÈ
+	protected int _defense = 10; //ë°©ì–´ë ¥ ìŠ¤íƒ¯
 	[SerializeField]
-	protected int _exp = 0; //°æÇèÄ¡
+	protected int _exp = 0; //ê²½í—˜ì¹˜
 	[SerializeField]
-	protected ItemSetSO _dropItemSet = null; //µå¶øÇÏ´Â ¾ÆÀÌÅÛ ¸®½ºÆ®
+	protected ItemSetSO _dropItemSet = null; //ë“œëí•˜ëŠ” ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸
 
-	//ÂüÁ¶ÇÏ´Â ¼Ó¼º
+	//ì°¸ì¡°í•˜ëŠ” ì†ì„±
 	protected Animator _animator = null;
 	protected CharacterController _characterController = null;
 	private IAttack[] _iAttacks = null;
@@ -365,33 +365,33 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 	private MonsterSpawner _monsterSpawner = null;
 	protected ItemPool _itemPool = null;
 
-	//¼Ó¼º
-	protected float _moveSpeed = 1.0f; //ÀÌµ¿¼Óµµ
-	protected bool _isSelect = false; //¼±ÅÃµÇ¾ú´ÂÁö
-	protected bool _isCapture = false; //ºùÀÇ µÇ¾ú´ÂÁö
-	protected Vector3 _moveDirect = Vector3.zero; //ÀÌµ¿¹æÇâ
-	protected Vector3 _gravityDirect = Vector3.zero; //Áß·Â º¤ÅÍ
-	protected Vector3 currentVelocitySpeed = Vector3.zero; //Ä³¸¯ÅÍ ÇöÀç ÀÌµ¿ ¼Óµµ
-	protected Vector3 _posTarget = Vector3.zero; //¸ó½ºÅÍ°¡ º» Å¸°Ù À§Ä¡
-	protected string _name; //¸ó½ºÅÍ ÀÌ¸§
-	protected string _description; //¸ó½ºÅÍ ¼³¸í;
-	protected float _coolTimeMLB = 0.0f; //¸¶¿ì½º ÁÂÅ¬¸¯ ÄğÅ¸ÀÓ
-	protected float _coolTimeMRB = 0.0f; //¸¶¿ì½º ¿ìÅ¬¸¯ ÄğÅ¸ÀÓ
-	protected float _coolTimeE = 0.0f; //E ÄğÅ¸ÀÓ
-	protected float _coolTimeR = 0.0f; //R ÄğÅ¸ÀÓ
+	//ì†ì„±
+	protected float _moveSpeed = 1.0f; //ì´ë™ì†ë„
+	protected bool _isSelect = false; //ì„ íƒë˜ì—ˆëŠ”ì§€
+	protected bool _isCapture = false; //ë¹™ì˜ ë˜ì—ˆëŠ”ì§€
+	protected Vector3 _moveDirect = Vector3.zero; //ì´ë™ë°©í–¥
+	protected Vector3 _gravityDirect = Vector3.zero; //ì¤‘ë ¥ ë²¡í„°
+	protected Vector3 currentVelocitySpeed = Vector3.zero; //ìºë¦­í„° í˜„ì¬ ì´ë™ ì†ë„
+	protected Vector3 _posTarget = Vector3.zero; //ëª¬ìŠ¤í„°ê°€ ë³¸ íƒ€ê²Ÿ ìœ„ì¹˜
+	protected string _name; //ëª¬ìŠ¤í„° ì´ë¦„
+	protected string _description; //ëª¬ìŠ¤í„° ì„¤ëª…;
+	protected float _coolTimeMLB = 0.0f; //ë§ˆìš°ìŠ¤ ì¢Œí´ë¦­ ì¿¨íƒ€ì„
+	protected float _coolTimeMRB = 0.0f; //ë§ˆìš°ìŠ¤ ìš°í´ë¦­ ì¿¨íƒ€ì„
+	protected float _coolTimeE = 0.0f; //E ì¿¨íƒ€ì„
+	protected float _coolTimeR = 0.0f; //R ì¿¨íƒ€ì„
 
-	protected bool _canSkillMLB = false; //¸¶¿ì½º ÁÂÅ¬¸¯ ½ºÅ³À» »ç¿ë °¡´ÉÇÑÁö
-	protected bool _canSkillMRB = false; //¸¶¿ì½º ¿ìÅ¬¸¯ ½ºÅ³À» »ç¿ë °¡´ÉÇÑÁö
-	protected bool _canSkillE = false; //E ½ºÅ³À» »ç¿ë °¡´ÉÇÑÁö
-	protected bool _canSkillR = false; //R ½ºÅ³À» »ç¿ë °¡´ÉÇÑÁö
-	private bool _isAttack; //°ø°İÁßÀÏ ¶§
-	private bool _isDie; //Á×¾úÀ» ¶§
+	protected bool _canSkillMLB = false; //ë§ˆìš°ìŠ¤ ì¢Œí´ë¦­ ìŠ¤í‚¬ì„ ì‚¬ìš© ê°€ëŠ¥í•œì§€
+	protected bool _canSkillMRB = false; //ë§ˆìš°ìŠ¤ ìš°í´ë¦­ ìŠ¤í‚¬ì„ ì‚¬ìš© ê°€ëŠ¥í•œì§€
+	protected bool _canSkillE = false; //E ìŠ¤í‚¬ì„ ì‚¬ìš© ê°€ëŠ¥í•œì§€
+	protected bool _canSkillR = false; //R ìŠ¤í‚¬ì„ ì‚¬ìš© ê°€ëŠ¥í•œì§€
+	private bool _isAttack; //ê³µê²©ì¤‘ì¼ ë•Œ
+	private bool _isDie; //ì£½ì—ˆì„ ë•Œ
 
-	//ÃÊ±ê°ª
+	//ì´ˆê¹ƒê°’
 	private int _originMaxHP = 0;
-	protected int _originAtk = 0; //°ø°İ ½ºÅÈ
-	protected int _originSpeed = 0; //¼Óµµ ½ºÅÈ
-	protected int _originDefense = 0; //¹æ¾î·Â ½ºÅÈ
+	protected int _originAtk = 0; //ê³µê²© ìŠ¤íƒ¯
+	protected int _originSpeed = 0; //ì†ë„ ìŠ¤íƒ¯
+	protected int _originDefense = 0; //ë°©ì–´ë ¥ ìŠ¤íƒ¯
 
 
 	public virtual void Start()
@@ -440,7 +440,7 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 	}
 
 	/// <summary>
-	/// ÇØ°ñ »óÅÂ¿¡ µû¶ó µ¿ÀÛ Á¦¾îÇÏ´Â ÇÔ¼ö
+	/// í•´ê³¨ ìƒíƒœì— ë”°ë¼ ë™ì‘ ì œì–´í•˜ëŠ” í•¨ìˆ˜
 	/// </summary>
 	void CheckState()
 	{
@@ -466,55 +466,55 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 	}
 
 	/// <summary>
-	/// ÇØ°ñ »óÅÂ°¡ ´ë±âÀÏ ¶§ µ¿ÀÛ
+	/// í•´ê³¨ ìƒíƒœê°€ ëŒ€ê¸°ì¼ ë•Œ ë™ì‘
 	/// </summary>
 	void SetIdle()
 	{
-		//ÇÃ·¹ÀÌ¾î¸¦ °¨ÁöÇß´À³Ä ¾È Çß´À³Ä
+		//í”Œë ˆì´ì–´ë¥¼ ê°ì§€í–ˆëŠëƒ ì•ˆ í–ˆëŠëƒ
 		if (_targetCharacter == null)
 		{
-			//ÀÓÀÇÀÇ ÀÌµ¿ ¸ñÇ¥Á¡
+			//ì„ì˜ì˜ ì´ë™ ëª©í‘œì 
 			_posTarget = new Vector3(transform.position.x + Random.Range(-10f, 10f),
 									transform.position.y + 1000f,
 									transform.position.z + Random.Range(-10f, 10f));
 
 
-			//·¹ÀÌÄ³½ºÆ® ½ÃÀÛÁ¡ ¸ñÇ¥¹æÇâ
+			//ë ˆì´ìºìŠ¤íŠ¸ ì‹œì‘ì  ëª©í‘œë°©í–¥
 			Ray ray = new Ray(_posTarget, Vector3.down);
 			RaycastHit info = new RaycastHit();
-			//Ãæµ¹Ã¼°¡ ÀÖ´Ù¸é
+			//ì¶©ëŒì²´ê°€ ìˆë‹¤ë©´
 			if (Physics.Raycast(ray, out info, Mathf.Infinity))
 			{
-				//ÀÓÀÇÀÇ ¸ñÇ¥ º¤ÅÍ¿¡ ³ôÀÌ °ª Ãß°¡
+				//ì„ì˜ì˜ ëª©í‘œ ë²¡í„°ì— ë†’ì´ ê°’ ì¶”ê°€
 				_posTarget.y = info.point.y;
 			}
-			//ÇØ°ñ »óÅÂ¸¦ Move·Î
+			//í•´ê³¨ ìƒíƒœë¥¼ Moveë¡œ
 			ChangeState(MonsterState.Move);
 		}
 		else
 		{
-			//ÇØ°ñ »óÅÂ¸¦ Go TargetÀ¸·Î
+			//í•´ê³¨ ìƒíƒœë¥¼ Go Targetìœ¼ë¡œ
 			ChangeState(MonsterState.GoTarget);
 		}
 	}
 
 	/// <summary>
-	/// ÇØ°ñ »óÅÂ°¡ MoveÈ¤Àº GOtoTargetÀÏ ¶§ ÀÌµ¿ ÇÔ¼ö
+	/// í•´ê³¨ ìƒíƒœê°€ Moveí˜¹ì€ GOtoTargetì¼ ë•Œ ì´ë™ í•¨ìˆ˜
 	/// </summary>
 	void SetMove()
 	{
-		//Ãâ¹ßÁ¡°ú µµÂøÁ¡ µÎ º¤ÅÍÀÇ Â÷ÀÌ
+		//ì¶œë°œì ê³¼ ë„ì°©ì  ë‘ ë²¡í„°ì˜ ì°¨ì´
 		Vector3 distance = Vector3.zero;
-		//¹æÇâ
+		//ë°©í–¥
 		Vector3 posLookAt = Vector3.zero;
 
 		switch (_monsterState)
 		{
 			case MonsterState.Move:
-				//¸ñÇ¥ À§Ä¡°¡ ÀÖÀ» ¶§
+				//ëª©í‘œ ìœ„ì¹˜ê°€ ìˆì„ ë•Œ
 				if (_posTarget != Vector3.zero)
 				{
-					//¸ñÇ¥ À§Ä¡¿Í ÇØ°ñ À§Ä¡ Â÷ÀÌ ±¸ÇÏ±â
+					//ëª©í‘œ ìœ„ì¹˜ì™€ í•´ê³¨ ìœ„ì¹˜ ì°¨ì´ êµ¬í•˜ê¸°
 					distance = _posTarget - transform.position;
 
 					if (distance.magnitude < _atkRange)
@@ -523,14 +523,14 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 						return;
 					}
 
-					//¹Ù¶óº¸´Â ¹æÇâ
+					//ë°”ë¼ë³´ëŠ” ë°©í–¥
 					posLookAt = new Vector3(_posTarget.x, transform.position.y, _posTarget.z);
 				}
 				break;
 			case MonsterState.GoTarget:
 				if (_targetCharacter != null)
 				{
-					//Å¸°Ù À§Ä¡¿Í ÇØ°ñ À§Ä¡ Â÷ÀÌ ±¸ÇÏ±â
+					//íƒ€ê²Ÿ ìœ„ì¹˜ì™€ í•´ê³¨ ìœ„ì¹˜ ì°¨ì´ êµ¬í•˜ê¸°
 					distance = _targetCharacter.transform.position - transform.position;
 					float angle = GetTargetToAngle();
 					if (distance.magnitude < _atkRange && angle < _viewAngle / 2)
@@ -554,32 +554,32 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 						return;
 					}
 
-					//¹Ù¶óº¸´Â ¹æÇâ
+					//ë°”ë¼ë³´ëŠ” ë°©í–¥
 					posLookAt = new Vector3(_targetCharacter.transform.position.x, transform.position.y, _targetCharacter.transform.position.z);
 				}
 				break;
 		}
 
-		//ÇØ°ñÀÌ ÀÌµ¿ÇÒ ¹æÇâÀº Å©±â°¡ ¾ø°í ¹æÇâ¸¸ °¡ºó º¤ÅÍ
+		//í•´ê³¨ì´ ì´ë™í•  ë°©í–¥ì€ í¬ê¸°ê°€ ì—†ê³  ë°©í–¥ë§Œ ê°€ë¹ˆ ë²¡í„°
 		Vector3 direction = distance.normalized;
 
-		//¹æÇâÀº x,z¸¸ »ç¿ë
+		//ë°©í–¥ì€ x,zë§Œ ì‚¬ìš©
 		direction = new Vector3(direction.x, 0f, direction.z);
 		_moveDirect = direction.normalized;
 
-		//ÀÌµ¿·® ¹æÇâ ±¸ÇÔ
+		//ì´ë™ëŸ‰ ë°©í–¥ êµ¬í•¨
 		Vector3 amount = direction * _moveSpeed * Time.deltaTime + _gravityDirect;
 
-		//¿ùµå ÁÂÇ¥·Î ÀÌµ¿
+		//ì›”ë“œ ì¢Œí‘œë¡œ ì´ë™
 		_characterController.Move(amount);
 
-		//Ä³¸¯ÅÍ ¹æÇâ
+		//ìºë¦­í„° ë°©í–¥
 		transform.LookAt(posLookAt);
 
 	}
 
 	/// <summary>
-	/// ÇØ°ñ °ø°İ¸ğµå
+	/// í•´ê³¨ ê³µê²©ëª¨ë“œ
 	/// </summary>
 	void SetAttack()
 	{
@@ -597,16 +597,16 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 	}
 
 	/// <summary>
-	/// Á¤Áö »óÅÂ ÄÚ·çÆ¾ ÇÔ¼ö
+	/// ì •ì§€ ìƒíƒœ ì½”ë£¨í‹´ í•¨ìˆ˜
 	/// </summary>
 	/// <returns></returns>
 	IEnumerator SetWait(float time)
 	{
-		//´ë±â »óÅÂ·Î º¯°æ
+		//ëŒ€ê¸° ìƒíƒœë¡œ ë³€ê²½
 		ChangeState(MonsterState.Wait);
-		//´ë±â½Ã°£ ÀÛµ¿
+		//ëŒ€ê¸°ì‹œê°„ ì‘ë™
 		yield return new WaitForSeconds(time);
-		//Idle·Î µ¹·ÁÁØ´Ù
+		//Idleë¡œ ëŒë ¤ì¤€ë‹¤
 		ChangeState(MonsterState.Idle);
 	}
 
@@ -614,12 +614,12 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 	{
 		if (_level <= level && _hp > 0)
 		{
-			Debug.Log("ºùÀÇ °¡´É");
+			Debug.Log("ë¹™ì˜ ê°€ëŠ¥");
 			return true;
 		}
 		else
 		{
-			Debug.Log("ºùÀÇ ºÒ°¡´É");
+			Debug.Log("ë¹™ì˜ ë¶ˆê°€ëŠ¥");
 			return false;
 		}
 	}
@@ -643,7 +643,7 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 	}
 
 	/// <summary>
-	/// ºùÀÇ µÆÀ» ¶§ ¿òÁ÷ÀÓ
+	/// ë¹™ì˜ ëì„ ë•Œ ì›€ì§ì„
 	/// </summary>
 	/// <param name="targetVector"></param>
 	public void MonsterMove(Vector3 targetVector, bool isTarggeting)
@@ -678,7 +678,7 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 	}
 
 	/// <summary>
-	/// ºùÀÇ
+	/// ë¹™ì˜
 	/// </summary>
 	public void Capture()
 	{
@@ -688,7 +688,7 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 	}
 
 	/// <summary>
-	/// ºùÀÇ ÇØÁ¦
+	/// ë¹™ì˜ í•´ì œ
 	/// </summary>
 	public void UnCapture()
 	{
@@ -701,7 +701,7 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 	}
 
 	/// <summary>
-	/// ¾Ö´Ï¸ŞÀÌ¼Ç ¼³Á¤
+	/// ì• ë‹ˆë©”ì´ì…˜ ì„¤ì •
 	/// </summary>
 	private void SetAnimation()
 	{
@@ -782,7 +782,7 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 	}
 
 	/// <summary>
-	/// Áß·Â ¼³Á¤
+	/// ì¤‘ë ¥ ì„¤ì •
 	/// </summary>
 	private void SetGravity()
 	{
@@ -800,7 +800,7 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 	}
 
 	/// <summary>
-	/// ¸öÅë µ¹¸®±â
+	/// ëª¸í†µ ëŒë¦¬ê¸°
 	/// </summary>
 	private void BodyDirectChange()
 	{
@@ -811,7 +811,7 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 	}
 
 	/// <summary>
-	/// ¼Óµµ ¹İÈ¯
+	/// ì†ë„ ë°˜í™˜
 	/// </summary>
 	private float GetVelocitySpd()
 	{
@@ -830,7 +830,7 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 	}
 
 	/// <summary>
-	/// °ø°İ Ãæµ¹
+	/// ê³µê²© ì¶©ëŒ
 	/// </summary>
 	/// <param name="other"></param>
 	private void OnTriggerEnter(Collider other)
@@ -840,7 +840,7 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 			var iAttack = other.GetComponent<IAttack>();
 			if(iAttack.Attacker == null)
 			{
-				//°ø°İ¹ŞÀ½
+				//ê³µê²©ë°›ìŒ
 				Damaged(iAttack);
 				_targetCharacter = null;
 			}
@@ -853,7 +853,7 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 	}
 
 	/// <summary>
-	/// °ø°İ¹Ş¾ÒÀ» ¶§ ÇÔ¼ö
+	/// ê³µê²©ë°›ì•˜ì„ ë•Œ í•¨ìˆ˜
 	/// </summary>
 	/// <param name="iAttack"></param>
 	private void Damaged(IAttack iAttack)
@@ -877,7 +877,7 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 	}
 
 	/// <summary>
-	/// Á×À½
+	/// ì£½ìŒ
 	/// </summary>
 	private void Die()
 	{
@@ -894,7 +894,7 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 	}
 
 	/// <summary>
-	/// ¾ÆÀÌÅÛ µå¶ø
+	/// ì•„ì´í…œ ë“œë
 	/// </summary>
 	private void ItemDrop()
 	{
@@ -916,7 +916,7 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 	}
 
 	/// <summary>
-	/// Å¸°ÙÀ» ÇâÇÑ °¢µµ
+	/// íƒ€ê²Ÿì„ í–¥í•œ ê°ë„
 	/// </summary>
 	/// <returns></returns>
 	private float GetTargetToAngle()
@@ -930,7 +930,7 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 		return targetAngle;
 	}
 	/// <summary>
-	/// Å¸°Ù Ã£À½
+	/// íƒ€ê²Ÿ ì°¾ìŒ
 	/// </summary>
 	/// <param name="target"></param>
 	private void OnCheckTarget(GameObject target)
@@ -943,7 +943,7 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 
 	}
 	/// <summary>
-	/// »óÅÂ º¯°æ
+	/// ìƒíƒœ ë³€ê²½
 	/// </summary>
 	/// <param name="monsterState"></param>
 	public void ChangeState(MonsterState monsterState)
@@ -951,7 +951,7 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 		_monsterState = monsterState;
 	}
 	/// <summary>
-	/// ÄğÅ¸ÀÓ Áõ°¡
+	/// ì¿¨íƒ€ì„ ì¦ê°€
 	/// </summary>
 	private void UpdateCoolTime()
 	{
@@ -1093,24 +1093,11 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 		}
 	}
 
-	public void OnGUI()
-	{
-		if(!IsCapture)
-		{
-			return;
-		}
-		GUI.Label(new Rect(5, 5, 1920, 20), $"Ä³¸¯ÅÍ ÄÁÆ®·Ñ·¯ ¼Óµµ : {_characterController.velocity}");
-		GUI.Label(new Rect(5, 25, 1920, 20), $"Ä³¸¯ÅÍ ÄÁÆ®·Ñ·¯ ¼Óµµ¸Å±×´Ï: {_characterController.velocity.magnitude}");
-		GUI.Label(new Rect(5, 45, 1920, 20), $"ÇöÀç ¼Óµµ: {currentVelocitySpeed}");
-		GUI.Label(new Rect(5, 65, 1920, 20), $"ÇöÀç ¼Óµµ¸Å±×´Ï: {currentVelocitySpeed.magnitude}");
-		
-	}
-
 	public virtual void Delete()
 	{
 		MonsterSpawner.RemoveCount();
 		gameObject.SetActive(false);
-		//ItemPoolFind.RegisterObject<MonsterBase>(this); ÀÚ½Ä¿¡¼­ ´Ù½Ã ±¸Çö
+		//ItemPoolFind.RegisterObject<MonsterBase>(this); ìì‹ì—ì„œ ë‹¤ì‹œ êµ¬í˜„
 	}
 
 	private IEnumerator DeleteMonster()
