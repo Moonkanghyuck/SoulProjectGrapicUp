@@ -1554,9 +1554,9 @@ MonoBehaviour:
   _groundHeight: 0
   _monsterSprite: {fileID: 21300000, guid: e488fffe77740e642881fc5b987b3127, type: 3}
   _coolTimeSpeedMLB: 10
-  _coolTimeSpeedMRB: 10
-  _coolTimeSpeedE: 10
-  _coolTimeSpeedR: 10
+  _coolTimeSpeedMRB: 3
+  _coolTimeSpeedE: 5
+  _coolTimeSpeedR: 1
   _atk: 1
   _speed: 5
   _defense: 1

@@ -35,6 +35,8 @@ public class MonsterSpawner : MonoBehaviour
 	private GameObject _pumpkinPrefeb;
 	[SerializeField]
 	private GameObject _dragonPrefeb;
+	[SerializeField]
+	private GameObject _endMonster;
 	private int _monsterCount = 0;
 	private bool _endGameNow = false;
 

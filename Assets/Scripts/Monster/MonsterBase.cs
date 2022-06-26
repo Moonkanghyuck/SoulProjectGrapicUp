@@ -356,7 +356,7 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 
 	//참조하는 속성
 	protected Animator _animator = null;
-	private CharacterController _characterController = null;
+	protected CharacterController _characterController = null;
 	private IAttack[] _iAttacks = null;
 	private Player _player = null;
 	private MoneyInventory _moneyInventory = null;
@@ -535,7 +535,22 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 					float angle = GetTargetToAngle();
 					if (distance.magnitude < _atkRange && angle < _viewAngle / 2)
 					{
-						MouseLButtonSkill();
+						if(CheckCoolTimeR())
+						{
+							KeyRSkill();
+						}
+						else if (CheckCoolTimeE())
+						{
+							KeyESkill();
+						}
+						else if(CheckCoolTimeMRB())
+						{
+							MouseRButtonSkill();
+						}
+						else if(CheckCoolTimeMLB())
+						{
+							MouseLButtonSkill();
+						}
 						return;
 					}
 
@@ -670,11 +685,6 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 		SelectMonster();
 		ChangeState(MonsterState.Idle);
 		_isCapture = true;
-		int count = _iAttacks.Length;
-		for (int i = 0; i < count; i++)
-		{
-			_iAttacks[i].IsPlayer = true;
-		}
 	}
 
 	/// <summary>
@@ -688,11 +698,6 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 			StartCoroutine(SetWait(1f));
 		}
 		_isCapture = false;
-		int count = _iAttacks.Length;
-		for (int i = 0; i < count; i++)
-		{
-			_iAttacks[i].IsPlayer = false;
-		}
 	}
 
 	/// <summary>
