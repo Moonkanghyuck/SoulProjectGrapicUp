@@ -15,8 +15,16 @@ public class Ghoul : MonsterBase
 	{
 		if (CheckCoolTimeE())
 		{
-			ChangeState(MonsterState.Attack);
-			_attackState = AttackState.E;
+			//ChangeState(MonsterState.Attack);
+			//_attackState = AttackState.E;
+			if (_targetCharacter == null)
+			{
+				NoticeManager.Notice("목표 대상이 없습니다");
+			}
+			else
+			{
+				_targetCharacter.transform.position = transform.position;
+			}
 			_coolTimeE = 0;
 			return true;
 		}
@@ -27,8 +35,8 @@ public class Ghoul : MonsterBase
 	{
 		if (CheckCoolTimeR())
 		{
-			ChangeState(MonsterState.Attack);
-			_attackState = AttackState.R;
+			//ChangeState(MonsterState.Attack);
+			//_attackState = AttackState.R;
 			_coolTimeR = 0;
 			return true;
 		}
@@ -41,14 +49,6 @@ public class Ghoul : MonsterBase
 		{
 			ChangeState(MonsterState.Attack);
 			_attackState = AttackState.MLB;
-			if(_targetCharacter == null)
-			{
-				NoticeManager.Notice("목표 대상이 없습니다");
-			}
-			else
-			{
-				_targetCharacter.transform.position = transform.position;
-			}
 			_coolTimeMLB = 0;
 			return true;
 		}

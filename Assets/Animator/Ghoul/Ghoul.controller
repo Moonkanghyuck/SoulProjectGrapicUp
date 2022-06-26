@@ -216,7 +216,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsAttackMLB
+    m_ConditionEvent: IsAttackMRB
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6904691731495066688}
@@ -363,13 +363,13 @@ AnimatorStateMachine:
     m_Position: {x: 100, y: -70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2647931213851434877}
-    m_Position: {x: 100, y: 150, z: 0}
+    m_Position: {x: 150, y: 150, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4664693111667309316}
     m_Position: {x: 370, y: 40, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6904691731495066688}
-    m_Position: {x: 90, y: 280, z: 0}
+    m_Position: {x: 80, y: 290, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: 795593183342125498}

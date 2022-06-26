@@ -9480,7 +9480,7 @@ GameObject:
   - component: {fileID: 400016}
   - component: {fileID: 19800014}
   - component: {fileID: 7799100507824041022}
-  - component: {fileID: 4935416882771244895}
+  - component: {fileID: 2164514083733882349}
   m_Layer: 0
   m_Name: SmallFireBall
   m_TagString: Untagged
@@ -14241,7 +14241,7 @@ MonoBehaviour:
   _attacker: {fileID: 0}
   _originDamage: 10
   _addDamage: 0
---- !u!114 &4935416882771244895
+--- !u!114 &2164514083733882349
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14250,7 +14250,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b33378c6f1393745aec1f778bcf9da1, type: 3}
+  m_Script: {fileID: 11500000, guid: a97896bb0403f9146886331ff8b0d547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &111498

@@ -5507,8 +5507,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _textEffect: {fileID: 7807450877405194234, guid: 7e37085a51809bf4bba5f70bd3b65362, type: 3}
   _attackEffect: {fileID: 6192724089161036641, guid: e17d9a3f04750764c8c0a7a0461e4c3b, type: 3}
-  _fireBallEffect: {fileID: 0}
-  _smallFireBallEffect: {fileID: 0}
+  _fireBallEffect: {fileID: 100016, guid: b69afd18712a1084888808b4c1e16e43, type: 3}
+  _smallFireBallEffect: {fileID: 100016, guid: 8d9fe91795be6604fbe5798f4b07ec47, type: 3}
 --- !u!4 &1674128684 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5929208353965183074, guid: 67143f4ca4712b74d976245b72441097, type: 3}
@@ -6685,7 +6685,6 @@ MonoBehaviour:
   _ghoulPrefeb: {fileID: 1533023043300311040, guid: c776fed505b652440ad47bf65bb354fa, type: 3}
   _pumpkinPrefeb: {fileID: 5958361084596616301, guid: fe6cf32fd53516f4cb2e50b48763432f, type: 3}
   _dragonPrefeb: {fileID: 1443327365081416391, guid: 3ff3157c7a648b842826417a7df4e08a, type: 3}
-  _endMonster: {fileID: 0}
 --- !u!4 &2012794479 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 883120403691809223, guid: b47483c1fe9f22546bca092055b64778, type: 3}

@@ -95,6 +95,7 @@ public class PlayerStat : MonoBehaviour
 	public void Start()
 	{
 		_player = GetComponent<Player>();
+		_player.BattleUICanvas?.SettingSoulInfo(this);
 	}
 
 	public void Update()
@@ -161,6 +162,7 @@ public class PlayerStat : MonoBehaviour
 	{
 		++_level;
 		_exp = 0;
+		_player.BattleUICanvas?.SettingSoulInfo(this);
 	}
 
 

@@ -20,7 +20,7 @@ public class MonsterSpawner : MonoBehaviour
 	{
 		get
 		{
-			_noticeManager ??= GetComponent<NoticeManager>();
+			_noticeManager ??= FindObjectOfType<NoticeManager>();
 			return _noticeManager;
 		}
 	}
