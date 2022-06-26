@@ -328,7 +328,7 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 	[SerializeField]
 	private float _atkRange = 1.5f; //몬스터 공격 거리
 	[SerializeField]
-	private GameObject _targetCharacter = null; //몬스터의 타겟
+	protected GameObject _targetCharacter = null; //몬스터의 타겟
 	[SerializeField]
 	private float _viewAngle; //시야각
 	[SerializeField]
