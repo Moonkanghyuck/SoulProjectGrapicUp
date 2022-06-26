@@ -472,7 +472,7 @@ MonoBehaviour:
   _speed: 10
   _defense: 10
   _exp: 0
-  _dropItemSet: {fileID: 0}
+  _dropItemSet: {fileID: 11400000, guid: 9d5334a127466fe4689dd93356184131, type: 2}
 --- !u!1 &1274347141150869829
 GameObject:
   m_ObjectHideFlags: 0

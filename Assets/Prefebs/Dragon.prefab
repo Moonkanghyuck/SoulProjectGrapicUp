@@ -1782,7 +1782,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1443327365081074595
 Transform:
   m_ObjectHideFlags: 0
@@ -1860,7 +1860,7 @@ MonoBehaviour:
   _speed: 10
   _defense: 10
   _exp: 0
-  _dropItemSet: {fileID: 0}
+  _dropItemSet: {fileID: 11400000, guid: 1134599fa59041349b27fadde4e31712, type: 2}
 --- !u!143 &1443327365081074597
 CharacterController:
   m_ObjectHideFlags: 0

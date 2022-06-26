@@ -14,8 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemsList:
   - _itemType: 1
-    _count: 3
+    _count: 5
   - _itemType: 2
-    _count: 3
+    _count: 5
   - _itemType: 3
-    _count: 3
+    _count: 1
+  - _itemType: 4
+    _count: 1
+  - _itemType: 5
+    _count: 1
+  - _itemType: 6
+    _count: 1
