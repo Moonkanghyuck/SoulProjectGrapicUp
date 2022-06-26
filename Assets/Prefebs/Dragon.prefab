@@ -1839,29 +1839,29 @@ MonoBehaviour:
   _monsterState: 0
   _beforeMonsterState: 0
   _attackState: 0
-  _originLevel: 5
+  _originLevel: 50
   _level: 1
   _selection: {fileID: 3750329164740336399}
   _centerPivot: {fileID: 3750329164818182700}
-  _originMoveSpeed: 0
+  _originMoveSpeed: 7
   _gravitySpeed: 3
   _rotateSpeed: 100
   _bodyRotateSpeed: 50
   velocityChangeSpeed: 0.01
-  _maxhp: 100
-  _hp: 100
+  _maxhp: 1000
+  _hp: 1000
   _atkRange: 10
   _targetCharacter: {fileID: 0}
   _viewAngle: 40
   _groundHeight: 0.5
   _monsterSprite: {fileID: 21300000, guid: 3f07f56f23bb4e54a9cde2b52330caa0, type: 3}
-  _coolTimeSpeedMLB: 10
-  _coolTimeSpeedMRB: 10
-  _coolTimeSpeedE: 10
-  _coolTimeSpeedR: 10
-  _atk: 10
-  _speed: 10
-  _defense: 10
+  _coolTimeSpeedMLB: 1
+  _coolTimeSpeedMRB: 0.5
+  _coolTimeSpeedE: 0.1
+  _coolTimeSpeedR: 0.05
+  _atk: 50
+  _speed: 50
+  _defense: 50
   _exp: 0
   _dropItemSet: {fileID: 11400000, guid: 1134599fa59041349b27fadde4e31712, type: 2}
 --- !u!143 &1443327365081074597

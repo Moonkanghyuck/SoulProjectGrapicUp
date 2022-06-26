@@ -1542,7 +1542,7 @@ MonoBehaviour:
   _level: 1
   _selection: {fileID: 2085715349936681478}
   _centerPivot: {fileID: 2085715349936990007}
-  _originMoveSpeed: 8
+  _originMoveSpeed: 6
   _gravitySpeed: 3
   _rotateSpeed: 100
   _bodyRotateSpeed: 50
@@ -1563,7 +1563,6 @@ MonoBehaviour:
   _defense: 1
   _exp: 0
   _dropItemSet: {fileID: 11400000, guid: 9d5334a127466fe4689dd93356184131, type: 2}
-  _skillRProjectile: {fileID: 8197893559453319277, guid: 0ec6861fbb0b6c6418a4051d79539c1d, type: 3}
 --- !u!1 &2085715349229982946
 GameObject:
   m_ObjectHideFlags: 0
