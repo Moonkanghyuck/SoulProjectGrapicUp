@@ -838,9 +838,14 @@ public abstract class MonsterBase : MonoBehaviour, IMonster
 		if (other.gameObject.CompareTag("ATK"))
 		{
 			var iAttack = other.GetComponent<IAttack>();
-			if(iAttack.Attacker != gameObject)
+			if(iAttack.Attacker == null)
 			{
 				//공격받음
+				Damaged(iAttack);
+				_targetCharacter = null;
+			}
+			else if(iAttack.Attacker != gameObject)
+			{
 				Damaged(iAttack);
 				_targetCharacter = iAttack.Attacker;
 			}

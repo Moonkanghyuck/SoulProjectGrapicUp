@@ -10,6 +10,10 @@ public class EffectManager : MonoBehaviour
 	private GameObject _textEffect;
 	[SerializeField]
 	private GameObject _attackEffect;
+	[SerializeField]
+	private GameObject _fireBallEffect;
+	[SerializeField]
+	private GameObject _smallFireBallEffect;
 
 	private ItemPool _itemPool;
 
@@ -40,4 +44,24 @@ public class EffectManager : MonoBehaviour
 		atkEffect.Setting();
 	}
 
+	public void FireBallEffect(Vector3 pos)
+	{
+		FireBall atkEffect = _itemPool.GetObject<FireBall>();
+		if (atkEffect == null)
+		{
+			atkEffect = Instantiate(_fireBallEffect, pos, Quaternion.identity, null).GetComponent<FireBall>();
+		}
+		atkEffect.transform.position = pos;
+		atkEffect.Setting();
+	}
+	public void SmallFireBallEffect(Vector3 pos)
+	{
+		SmallFireBall atkEffect = _itemPool.GetObject<SmallFireBall>();
+		if (atkEffect == null)
+		{
+			atkEffect = Instantiate(_smallFireBallEffect, pos, Quaternion.identity, null).GetComponent<SmallFireBall>();
+		}
+		atkEffect.transform.position = pos;
+		atkEffect.Setting();
+	}
 }

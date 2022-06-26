@@ -18,6 +18,11 @@ public class SkeletonWizard : MonsterBase
 		{
 			ChangeState(MonsterState.Attack);
 			_attackState = AttackState.E;
+			EffectManagerObj.SmallFireBallEffect(transform.position + transform.forward * 10);
+			EffectManagerObj.SmallFireBallEffect(transform.position + transform.forward * 10 + transform.up * 10);
+			EffectManagerObj.SmallFireBallEffect(transform.position + transform.forward * 10 + transform.up * -10);
+			EffectManagerObj.SmallFireBallEffect(transform.position + transform.forward * 10 + transform.right * 10);
+			EffectManagerObj.SmallFireBallEffect(transform.position + transform.forward * 10 + transform.right * -10);
 			_coolTimeE = 0;
 			return true;
 		}
@@ -54,6 +59,7 @@ public class SkeletonWizard : MonsterBase
 		{
 			ChangeState(MonsterState.Attack);
 			_attackState = AttackState.MRB;
+			EffectManagerObj.FireBallEffect(transform.position + transform.forward * 10);
 			_coolTimeMRB = 0;
 			return true;
 		}
