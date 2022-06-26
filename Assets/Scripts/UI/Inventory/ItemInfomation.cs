@@ -40,8 +40,8 @@ public class ItemInfomation : MonoBehaviour
 		{
 			_nameText.text = _itemBox.Item.Name;
 			_descriptionText.text = _itemBox.Item.Description;
-			_countText.text = $"{_itemBox.Item.Count}";
-			_priceText.text = $"°¡Ä¡ : {_itemBox.Item.Price}";
+			_countText.text = $"x{_itemBox.Item.Count}";
+			_priceText.text = $"ï¿½ï¿½Ä¡ : {_itemBox.Item.Price}";
 			_itemImage.sprite = _itemBox.ItemSprite;
 			_itemImage.color = new Color(1, 1, 1, 1);
 		}

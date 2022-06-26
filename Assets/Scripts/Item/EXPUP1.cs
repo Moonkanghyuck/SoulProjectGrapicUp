@@ -30,14 +30,14 @@ public class EXPUP1 : IItem
 	{
 		get
 		{
-			return "°æÇèÄ¡ Æ÷¼Ç";
+			return "ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½";
 		}
 	}
 	public string Description
 	{
 		get
 		{
-			return "ºùÀÇÇÑ ¸ó½ºÅÍÀÇ °æÇèÄ¡¸¦ ¼Ò·® Áõ°¡½ÃÅ²´Ù";
+			return "ê²½í—˜ì¹˜ë¥¼ ì†ŒëŸ‰ ì¦ê°€ì‹œí‚¨ë‹¤";
 		}
 	}
 	public EItem ItemType
@@ -73,11 +73,11 @@ public class EXPUP1 : IItem
 		{
 			player.gameObject.GetComponent<PlayerStat>().AddExp(100);
 			Count--;
-			NoticeManager.Notice("°æÇèÄ¡ Áõ°¡ 100");
+			NoticeManager.Notice("ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ 100");
 		}
 		else
 		{
-			NoticeManager.Notice("¾ÆÀÌÅÛÀÌ ¾ø½À´Ï´Ù");
+			NoticeManager.Notice("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½");
 		}
 	}
 
