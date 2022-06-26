@@ -41,7 +41,7 @@ public class MonsterSpawner : MonoBehaviour
 
 	public void Update()
 	{
-		if(!_endGame && !_finalGame && _playerStat.Level >= 60)
+		if(!_endGame && !_finalGame && _playerStat.Level >= 40)
 		{
 			_finalGame = true;
 			AllMonsterDelete();
@@ -123,7 +123,17 @@ public class MonsterSpawner : MonoBehaviour
 			float goulPercent = _playerStat.Level + 30;
 			float orcPercent = _playerStat.Level + 20;
 			float pumpkinPercent = _playerStat.Level + 10;
-			float[] probs = new float[5] {skeletonPercent, skeletonMagePercent, goulPercent, orcPercent, pumpkinPercent };
+			float dragonPercent = _playerStat.Level;
+			float[] probs;
+			if (_endGame)
+			{
+				probs = new float[5] { skeletonPercent, skeletonMagePercent, goulPercent, orcPercent, pumpkinPercent };
+			}
+			else
+			{
+				probs = new float[6] { skeletonPercent, skeletonMagePercent, goulPercent, orcPercent, pumpkinPercent, dragonPercent};
+			}
+
 			switch (Choose(probs))
 			{
 				case 0:
@@ -140,6 +150,9 @@ public class MonsterSpawner : MonoBehaviour
 					break;
 				case 4:
 					SpawnPumpkin(spawnVector);
+					break;
+				case 5:
+					SpawnDragon(spawnVector);
 					break;
 			}
 		}
