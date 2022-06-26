@@ -7,8 +7,8 @@ public class Orc : MonsterBase
 	public override void Start()
 	{
 		base.Start();
-		_name = "¿ÀÅ©";
-		_description = "ÀÎ°£º¸´Ù Ä¿´Ù¶õ Ã¼°İ°ú ±Ù·ÂÀ» Áö´Ñ ¸ó½ºÅÍ·Î µ¢Ä¡¿¡ ºñÇØ ¹ÎÃ¸ÇÏ¸ç ÃÊ·Ï»ö ÇÇºÎ¸¦ ÀÌ¿ëÇÏ¿© Ç® ¼Ó¿¡¼­ »ç³É°¨ÀÌ ´Ù°¡¿À´Â °ÍÀ» ±â´Ù¸°´Ù";
+		_name = "ì˜¤í¬";
+		_description = "ì¸ê°„ë³´ë‹¤ ì»¤ë‹¤ë€ ì²´ê²©ê³¼ ê·¼ë ¥ì„ ì§€ë‹Œ ëª¬ìŠ¤í„°ë¡œ ë©ì¹˜ì— ë¹„í•´ ë¯¼ì²©í•˜ë©° ì´ˆë¡ìƒ‰ í”¼ë¶€ë¥¼ ì´ìš©í•˜ì—¬ í’€ ì†ì—ì„œ ì‚¬ëƒ¥ê°ì´ ë‹¤ê°€ì˜¤ëŠ” ê²ƒì„ ê¸°ë‹¤ë¦°ë‹¤";
 	}
 
 	public override bool KeyESkill()
@@ -27,9 +27,14 @@ public class Orc : MonsterBase
 	{
 		if (CheckCoolTimeR())
 		{
-			ChangeState(MonsterState.Attack);
-			_attackState = AttackState.R;
+			//ChangeState(MonsterState.Attack);
+			//_attackState = AttackState.R;
+			transform.localScale = Vector3.one * 1.2f;
+			_atk += 5;
+			_defense += 5;
+			_speed += 5;
 			_coolTimeR = 0;
+			Invoke("StatOrigin", 5f);
 			return true;
 		}
 		return false;
@@ -51,14 +56,9 @@ public class Orc : MonsterBase
 	{
 		if (CheckCoolTimeMRB())
 		{
-			//ChangeState(MonsterState.Attack);
-			//_attackState = AttackState.MRB;
-			transform.localScale = Vector3.one * 1.2f;
-			_atk += 5;
-			_defense += 5;
-			_speed += 5;
+			ChangeState(MonsterState.Attack);
+			_attackState = AttackState.MRB;
 			_coolTimeMRB = 0;
-			Invoke("StatOrigin", 5f);
 			return true;
 		}
 		return false;
