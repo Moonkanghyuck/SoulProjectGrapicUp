@@ -24,7 +24,7 @@ public class MonsterInfomationWindow : MonoBehaviour
 		hpBar.fillAmount = (float)monster.HP / monster.MaxHP;
 		if (playerStat.Level >= monster.Level)
 		{
-			_captureText.text = "빙의 가능";
+			_captureText.text = "빙의 가능(MLB)";
 		}
 		else
 		{
